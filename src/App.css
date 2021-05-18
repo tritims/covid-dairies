@@ -1,0 +1,18 @@
+.App {
+  position: relative;
+}
+.Appcontainer {
+  position: relative;
+}
+.demoPage1 {
+  background: rgb(233, 62, 62);
+  color: #000;
+}
+.demoPage3 {
+  background: rgb(29, 214, 29);
+  color: #000;
+}
+.demoPage4 {
+  background: rgb(199, 60, 157);
+  color: #000;
+}

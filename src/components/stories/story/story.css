@@ -1,0 +1,13 @@
+.storyChip {
+  margin: 0.2rem;
+}
+.storyCard {
+  margin: 10px;
+  padding: 10px;
+  width: 90vw;
+  max-width: 900px;
+}
+.storyModal {
+  z-index: 100;
+  height: 100px;
+}

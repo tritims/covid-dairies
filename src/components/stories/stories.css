@@ -1,0 +1,43 @@
+.storiesContainer {
+  position: absolute;
+  padding: 15px;
+  display: flex;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to right, #f46b45, #eea849);
+  min-height: 90vh;
+}
+.storiesBackground {
+  /* background: linear-gradient(to right, #eea849, darkorchid);
+   */
+  min-height: 90vh;
+  background: radial-gradient(#eea849 45%, darkorchid 90%);
+}
+.filterclass {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  top: 10px;
+}
+.MuiPaginationItem-root {
+  color: blue !important;
+  background: #fff !important;
+}
+.MuiPaginationItem-page.Mui-selected {
+  color: #fff !important;
+  background: rgb(170, 120, 236) !important;
+}
+.singleStoryPara {
+  margin-top: 10px;
+  font-family: "Newsreader", Mulish;
+  font-size: 18px;
+  padding: 4px;
+}
+.paginationClass {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+}

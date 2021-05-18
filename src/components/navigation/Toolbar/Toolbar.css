@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Domine:wght@500&family=Mulish:wght@400&display=swap");
+.toolbarM {
+  /* position: sticky;
+  position: -webkit-sticky; */
+  background: #fff;
+  height: 56px;
+  top: 0;
+  left: 0;
+  padding: 12px 24px;
+  margin: 0;
+  box-shadow: 0 0 10px 0 rgb(50 50 50 / 55%);
+  z-index: 1;
+}
+
+.toolbar_navigation {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1.5rem;
+}
+.toolbar_logo {
+  padding: 1rem;
+  font-family: "Domine", serif;
+  font-size: 24px;
+  color: #181818;
+}
+.toolbar_logo_image {
+  height: 64px;
+}
+.toolbar_logo_align {
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar_logo a {
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+.toolbar_navigation_items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.toolbar_navigation_items li {
+  padding: 0 1.5rem;
+}
+
+.toolbar_navigation_items a {
+  color: #181818;
+  text-decoration: none;
+  font-family: "Mulish", serif;
+  font-style: light;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.toolbar_navigation_items a:hover,
+.toolbar_navigation_items a:active {
+  color: #fa923f;
+}
+.spacer {
+  flex: 0.92;
+}
+/* @media (max-width: 890px) {
+  .toolbar_navigation_items a {
+    font-size: 15px;
+  }
+  .toolbar_logo {
+    font-size: 19px;
+  }
+} */
+
+@media (max-width: 768px) {
+  .toolbar_navigation_items {
+    display: none;
+  }
+  .toolbar_logo {
+    font-size: 24px;
+  }
+}
+@media (min-width: 769px) {
+  .toggle_toolbar_button {
+    display: none;
+  }
+  .toolbar_logo {
+    margin-left: 0;
+  }
+}

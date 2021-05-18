@@ -1,0 +1,61 @@
+.mobilecontainer {
+  width: 100%;
+  height: 89.4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: darkorchid 90%;
+  background: radial-gradient(#eea849 45%, darkorchid 90%);
+}
+.mobilCover {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mobilebooks {
+  position: relative;
+  border: 2px solid #f1e3d0;
+  border-radius: 8px;
+}
+.mobilearticle {
+  margin: 10px;
+}
+
+div[role="presentation"] {
+  touch-action: pan-y !important;
+}
+.mobileneon-border {
+  position: relative;
+  background: #1d1e22;
+  filter: drop-shadow(0 0 1rem rgba(1, 6, 255, 0.5));
+}
+.mobileImage {
+  width: 300px;
+  height: 25%;
+}
+.mobileImageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mobilearticlefooter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+}
+.mobilearticleContent {
+  font-family: Newsreader;
+  font-size: 17px;
+  text-align: justify;
+}
+@media (max-width: 450px) {
+  .mobilearticleContent {
+    font-size: 15px;
+  }
+}
