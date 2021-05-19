@@ -65,8 +65,9 @@
       border-bottom: solid 1px hsl(35, 55, 90);
     }
     .page-image-img {
-      max-width: 400px;
-      max-height: 200px;
+      margin-top: 10px;
+      width: 300px;
+      height: 200px;
     }
 
     .page-text {
@@ -136,6 +137,7 @@
       text-align: center;
       // padding-top: 50%;
       font-size: 210%;
+      font-family: Newsreader;
       margin: 2px;
     }
 

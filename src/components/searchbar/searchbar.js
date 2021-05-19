@@ -1,20 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "./searchbar.css";
-const Searchbar = () => {
+import { InputBase, Paper } from "@material-ui/core";
+const Searchbar = ({ searchString, setSearchString }) => {
+  const [tempString, setTempString] = useState("");
+
+  const handleChage = (e) => {
+    setTempString(e.target.value);
+  };
+
+  const submit = () => {
+    setSearchString(tempString);
+  };
+
   return (
-    <div id="search-box">
-      <form action="/search" id="search-form" method="get" target="_top">
-        <input
-          id="search-text"
-          name="search-text"
-          placeholder="Search story"
-          autoComplete="off"
-          type="text"
-        />
-        <button id="search-button" type="submit">
-          <span>Search</span>
-        </button>
-      </form>
+    <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+      <Paper elevation={1} id="search-box">
+        <form id="search-form" onSubmit={submit}>
+          <InputBase
+            id="search-text"
+            placeholder={searchString || "Search story"}
+            autoComplete="off"
+            type="text"
+            value={tempString}
+            onChange={(e) => handleChage(e)}
+          />
+          <button
+            id="search-button"
+            type="submit"
+            // onKeyDown={submit}
+            // onClick={submit}
+          >
+            <span>
+              <i className="fas fa-search"></i>
+            </span>
+          </button>
+        </form>
+      </Paper>
     </div>
   );
 };

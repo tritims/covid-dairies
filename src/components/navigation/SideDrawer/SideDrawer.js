@@ -13,7 +13,7 @@ function SideDrawer(props) {
         to="/"
         style={{ textDecoration: "none" }}
       >
-        <div className="toolbar_logo">COVID Diaries</div>
+        <div className="toolbar_logo">COVID Safar</div>
       </Link>
       <div className="sidebar_navigation_items">
         <ul>

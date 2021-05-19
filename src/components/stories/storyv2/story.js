@@ -55,7 +55,7 @@ var colorArray = [
   "#6666FF",
 ];
 
-const Story = ({ data, width }) => {
+const Story = ({ data }) => {
   const history = useHistory();
   return (
     <div className={"news-card"}>
@@ -129,6 +129,7 @@ const Story = ({ data, width }) => {
                   color: "white",
                 }}
               >
+                {" "}
                 {data.source}
               </a>
             </div>

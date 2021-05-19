@@ -1,6 +1,11 @@
 import React from "react";
 import "./homepage.css";
 import Book from "./book.svg";
+import Safar from "./safar.jpg";
+import Featured1 from "./featured1.jpg";
+import Featured3 from "./featured3.jpg";
+import { Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Wavy = () => {
   return (
@@ -16,12 +21,17 @@ const Wavy = () => {
             </h3>
 
             <div className="frame">
-              <button className="custom-wavy-btn btn-7">
-                <span>Write Story</span>
-              </button>
-              <button className="custom-wavy-btn btn-7">
-                <span>Read More</span>
-              </button>
+              <Link to="/stories">
+                <button className="custom-wavy-btn btn-7">
+                  {" "}
+                  <span>Read </span>
+                </button>
+              </Link>
+              <Link to="/">
+                <button className="custom-wavy-btn btn-7">
+                  <span>Write </span>
+                </button>
+              </Link>
             </div>
           </div>
           <div>
@@ -51,6 +61,110 @@ const Wavy = () => {
             className="shape-fill"
           ></path>
         </svg>
+      </div>
+
+      <div>
+        <div className="showCasecard">
+          <div className="showCasethumbnail">
+            <img
+              className="showCaseimgleft"
+              src={Safar}
+              style={{ height: "100%" }}
+              alt="covid-safar"
+            />
+          </div>
+          <div className="showCaseright">
+            <h1 className="showCaseh1">What is COVID Safar?</h1>
+
+            <div className="showCaseseparator"></div>
+            <p className="showCasep">Description goes here</p>
+          </div>
+          <div className="absolutesmall">
+            <h1 className="showCaseh1">What is COVID Safar ?</h1>
+
+            <div className="showCaseseparator"></div>
+            <p className="showCasep">Description goes here</p>
+          </div>
+          <h6 className="showCaseh6">A peek into COVID Journey</h6>
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h2"
+          component="h2"
+          style={{ fontFamily: "Mulish" }}
+        >
+          Featured
+        </Typography>
+        <div className="blog-card">
+          <div className="meta">
+            <div
+              className="photo"
+              style={{
+                backgroundImage: `url(${Featured1})`,
+              }}
+            ></div>
+          </div>
+          <div className="description">
+            <h2>How I managed to boost my oxygen levels at home</h2>
+            <h4>Nandita Goel </h4>
+            <p className="ptagdescription">
+              Nandita Goel and her parents, both in their 60s contracted
+              COVID-19 in the month of April and underwent home isolation. While
+              all of their symptoms started similarly, Nandita's recovery was
+              slow and left her with a lot of lingering symptoms. She urges
+              younger people to not take the virus lightly and lists what she
+              did to boost her oxygen levels at home.Our COVID journey started
+              when my father complained saying he was feeling slightly feverish
+              and had a cold. He immediately isolated himself from me and my
+              mother. Within the next two-three days, me and my mother I, too,
+              developed symptoms. While mom had a fever, I developed slight
+              throat pain.....
+            </p>
+            <p className="read-more">
+              <a href="#">Read More</a>
+            </p>
+          </div>
+        </div>
+        <div className="blog-card alt">
+          <div className="meta">
+            <div
+              className="photo"
+              style={{
+                backgroundImage: `url(${Featured3})`,
+              }}
+            ></div>
+          </div>
+          <div className="description">
+            <h2>
+              How my 80-year-old grandpa with severe asthma survived COVID-19
+            </h2>
+            <h4>Anonymous</h4>
+            <p className="ptagdescription">
+              A doctor from Amravati, currently on COVID duty recounts the time
+              when COVID hit home and infected her 80-year-old asthmatic
+              grandfather. She shares her experience of getting tested early and
+              the strong willpower which helped her grandfather defeat the
+              virus. Here's their COVID story.It all started in January 2021. We
+              stay with our grandparents in Amravati. My mother being a
+              paediatrician and me, an MBBS intern had to go to the hospital
+              daily for work but we made sure to take all the necessary
+              precautions and my father, an engineer used to assist my
+              grandparents in their daily routine as he had to work from
+              home.....
+            </p>
+            <p className="read-more">
+              <a href="#">Read More</a>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

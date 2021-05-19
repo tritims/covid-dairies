@@ -6,6 +6,7 @@ import Headroom from "react-headroom";
 import RISHA from "./risha.png";
 import IIT from "./iittp.png";
 import { Divider } from "@material-ui/core";
+import Logo from "./logo.svg";
 
 function Toolbar(props) {
   return (
@@ -22,17 +23,17 @@ function Toolbar(props) {
           </div>
           <Link to="/" style={{ textDecoration: "none" }}>
             <div className="toolbar_logo toolbar_navigation_items">
-              COVID Diaries
+              <img style={{ width: "200px", height: "56px" }} src={Logo} />
             </div>
           </Link>
           <div className="spacer" />
           <div className="toolbar_navigation_items">
             <ul>
               <li>
-                <Link to="/addExperience">Write </Link>
+                <Link to="/stories">Read </Link>
               </li>
               <li>
-                <Link to="/stories">Read</Link>
+                <Link to="/write">Write</Link>
               </li>
             </ul>
           </div>

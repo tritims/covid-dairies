@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Domine:wght@500&family=Mulish:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap");
 .toolbarM {
   /* position: sticky;
   position: -webkit-sticky; */
@@ -20,9 +21,12 @@
 }
 .toolbar_logo {
   padding: 1rem;
-  font-family: "Domine", serif;
+  font-family: "Fredericka the Great", Domine;
+  font-weight: 400;
   font-size: 24px;
-  color: #181818;
+  /* color: #181818;
+   */
+  color: rgb(0, 0, 0);
 }
 .toolbar_logo_image {
   height: 64px;

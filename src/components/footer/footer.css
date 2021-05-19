@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap");
+.body {
+  margin: 0;
+  bottom: 0;
+  height: 100%;
+
+  height: 180px;
+}
+
+#red {
+  border-top: solid #f50057;
+  border-width: 15px;
+  background: #281a2b;
+  position: absolute;
+  width: 100%;
+}
+
+.text {
+  color: #b196e4;
+  font-family: Lato;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 50px;
+  font-family: Mulish;
+}
+
+.text2 {
+  color: #afa2a2;
+  font-family: Roboto;
+  font-size: 17px;
+  text-align: center;
+  margin-top: -10px;
+}
+.text21 {
+  color: #c2d19e;
+  font-family: Roboto;
+  font-size: 17px;
+  text-align: center;
+  margin-top: -10px;
+}
+
+.text3 {
+  color: #ffffff;
+  font-family: Lato;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 0;
+  float: center;
+}
+
+#page-footer {
+  display: none !important;
+}

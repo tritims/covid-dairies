@@ -7,6 +7,7 @@ import Spinner from "../loading/loading";
 import { Button, Chip } from "@material-ui/core";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
+import { getImage } from "./imageGetter";
 
 var colorArray = [
   "#FF6633",
@@ -69,18 +70,18 @@ const Page = React.forwardRef((props, ref) => {
   return (
     <div className="page" ref={ref}>
       <div className="page-content">
-        <h2 className="page-header"> {props.number}</h2>
+        {/* <h2 className="page-header"> {props.number}</h2> */}
         <div className="page-image">
-          <img
-            alt="covid-images"
-            className="page-image-img"
-            src={
-              "https://preventepidemics.org/wp-content/uploads/2020/06/wear-mask.svg"
-            }
-          ></img>
+          {props.image && (
+            <img
+              alt="covid-images"
+              className="page-image-img"
+              src={props.image}
+            ></img>
+          )}
         </div>
         <div className="page-text">{props.children}</div>
-        {/* <div className="page-footer">{props.number}</div> */}
+        <div className="page-footer">{props.number}</div>
       </div>
     </div>
   );
@@ -91,6 +92,7 @@ const Book = (props) => {
   let { id } = useParams();
   const [mount, setMount] = useState(true);
   const history = useHistory();
+  const [images, setImage] = useState([]);
 
   useEffect(() => {
     const fetchStory = async () => {
@@ -98,6 +100,7 @@ const Book = (props) => {
         const res = await axios.get(`http://localhost:5000/api/v1/id=${id}`);
 
         setStory(res.data);
+        setImage(getImage(res.data.keywords, res.data.content.length));
       } catch (error) {
         console.error(error);
       }
@@ -140,15 +143,22 @@ const Book = (props) => {
                   showCover={true}
                   maxShadowOpacity={0.7}
                   id="storyBookContainer"
-
-                  // style={{ justifyContent: "center", left: "20%", right: "20%" }}
                 >
                   <PageCover>
                     <h2 className="wavy-h2">COVID Diary</h2>
+                    {story.source ? (
+                      <>
+                        <i>by </i> <strong>{story.source}</strong>
+                      </>
+                    ) : (
+                      <>
+                        <i>by </i> <div>{story.author}</div>
+                      </>
+                    )}
                   </PageCover>
                   <Page number={1}>
                     <div className="wavy-h2">
-                      Title : {story && story.title}{" "}
+                      Title : {story && story.title}
                     </div>
                     <div>
                       Keywords:
@@ -173,11 +183,17 @@ const Book = (props) => {
                   </Page>
                   {story.content &&
                     story.content.map((item, i) => (
-                      <Page key={i} number={i + 2}>
+                      <Page
+                        image={images.length > 0 && images[i] + ".jpg"}
+                        key={i}
+                        number={i + 2}
+                      >
                         {item}
                       </Page>
                     ))}
-                  <PageCover>The End</PageCover>
+                  <PageCover>
+                    <h2 className="wavy-h2">The End</h2>
+                  </PageCover>
                 </HTMLFlipBook>
               }
             </div>

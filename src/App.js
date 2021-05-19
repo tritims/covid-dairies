@@ -7,54 +7,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Story from "./components/singleStory/mobileStory";
 import Flip from "./components/singleStory/flipPage";
 import useViewport from "./components/utility/useView";
+import Footer from "./components/footer/footer";
 
 function App() {
-  // const [isAuth, setAuth] = useState(false);
-  // const [loading, setLoading] = useState(true);
   const [sortingDate, setSortingDate] = useState("newest");
   const [coverage, setCoverage] = useState("global");
   const [page, setPage] = useState(1);
+  const [searchString, setSearchString] = useState("");
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-
-  //   const loginFromToken = async () => {
-  //     if (token) {
-  //       try {
-  //         const res = await axios.post(
-  //           "http://localhost:5000/auth/google",
-  //           JSON.stringify({ token: token }),
-  //           {
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //               "Access-Control-Allow-Origin": "*",
-  //             },
-  //           }
-  //         );
-  //         if (res.data.auth) {
-  //           setAuth(true);
-  //         } else {
-  //           setAuth(false);
-  //           localStorage.removeItem("token");
-  //         }
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //     setLoading(false);
-  //   };
-  //   loginFromToken();
-  // }, [setAuth, setLoading]);
-  // console.log("HEllo", isAuth);
-
-  // const DashWithProps = () => (
-  //   <Dashboard
-  //     isAuth={isAuth}
-  //     setAuth={setAuth}
-  //     setLoading={setLoading}
-  //     loading={loading}
-  //   />
-  // );
   const IndivisualStory = () => {
     const { width } = useViewport();
     if (width >= 1050) {
@@ -74,6 +34,8 @@ function App() {
       sortingDate={sortingDate}
       coverage={coverage}
       setCoverage={setCoverage}
+      searchString={searchString}
+      setSearchString={setSearchString}
     />
   );
   return (
@@ -84,6 +46,7 @@ function App() {
         <Route exact path="/stories" component={StoriesM} />
         <Route exact path="/story/:id" component={IndivisualStory} />
       </div>
+      <Footer />
     </Router>
   );
 }

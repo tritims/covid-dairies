@@ -18,7 +18,9 @@
 .filterclass {
   position: relative;
   display: flex;
+
   justify-content: space-around;
+
   top: 10px;
 }
 .MuiPaginationItem-root {
@@ -40,4 +42,11 @@
   display: flex;
   justify-content: center;
   bottom: 20px;
+}
+@media (max-width: 768px) {
+  .filterclass {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

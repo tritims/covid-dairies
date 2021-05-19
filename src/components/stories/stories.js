@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Paper, TextField, MenuItem } from "@material-ui/core";
-import { Skeleton, Pagination } from "@material-ui/lab";
+import { TextField, MenuItem, makeStyles } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
 import Story from "./storyv2/story";
 import "./stories.css";
 import axios from "axios";
@@ -15,16 +15,29 @@ const Stories = ({
   setSortingDate,
   coverage,
   setCoverage,
+  searchString,
+  setSearchString,
 }) => {
   const [storyData, setStory] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const { width } = useViewport();
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& .MuiFormLabel-root": {
+        color: "#F5F5DC",
+      },
+      "& .MuiInputBase-input": {
+        color: "#fff",
+      },
+    },
+  }));
+
   useEffect(() => {
     const getData = async () => {
       try {
         const data = await axios.get(
-          `http://localhost:5000/api/v1/?date=${sortingDate}&page=${page}&coverage=${coverage}&search=`
+          `http://localhost:5000/api/v1/?date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`
         );
         const res = data.data;
         let noStory = res[0].count;
@@ -51,6 +64,7 @@ const Stories = ({
         })}
     </>
   );
+  const classes = useStyles();
 
   return (
     <div className="storiesBackground">
@@ -65,9 +79,9 @@ const Stories = ({
               {/* For Date */}
               <TextField
                 style={{ marginRight: "10px" }}
-                color="#fff"
                 id="select"
                 label="Order"
+                className={classes.root}
                 value={sortingDate}
                 select
               >
@@ -91,7 +105,13 @@ const Stories = ({
                 </MenuItem>
               </TextField>
               {/* For coverage */}
-              <TextField id="select2" label="Coverage" value={coverage} select>
+              <TextField
+                id="select2"
+                label="Coverage"
+                className={classes.root}
+                value={coverage}
+                select
+              >
                 <MenuItem
                   value="global"
                   onClick={() => {
@@ -112,8 +132,11 @@ const Stories = ({
                 </MenuItem>
               </TextField>{" "}
             </div>
+            <SearchBar
+              searchString={searchString}
+              setSearchString={setSearchString}
+            />
           </div>
-          <SearchBar />
 
           <div className="Storycontent-wrapper">
             <AllStoriesv2 />
