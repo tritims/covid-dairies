@@ -38,7 +38,7 @@ app.json_encoder = JSONEncoder
 # initialize database
 try:
     dbConn = pymongo.MongoClient(
-        "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false")
+        "mongodb+srv://Abhishek:Satyam03@covid-diaries-cluster.mwtcw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     dbConn.server_info()
     db = dbConn['CovidDiaries']
     storyCollection = db['Stories']
@@ -129,7 +129,7 @@ def slate():
 
 # adding story(using scheduler)
 @app.route('/api/v1/toi', methods=['GET'])
-def index():
+def toi():
     searchString = 'my-covid-story'  # can have list of keywords
     # searchString = request.json['content']   #if we want to search custom string via front end
 
@@ -225,8 +225,8 @@ def index():
                 print(f"Saved {saveCount} succesfully")
                 saveCount += 1
             except Exception as e:
-                return f"An Error Occured: {e}"
-    return jsonify({"success": True}), 200
+                print(f"An Error Occured: {e}")
+    print("Successfully scraped")
 
 
 # search string
@@ -289,6 +289,20 @@ def story(_id):
         return f"An Error Occured: {e}"
 
 
+# def run_task():
+#     schedule.every().day.at("09:03:50").do(toi)
+#     schedule.every().day.at("00:00").do(slate)
+#     while True:
+#         schedule.run_pending()
+#         time.sleep(1)
+
+
 port = int(os.environ.get('PORT', 5000))
 if __name__ == '__main__':
+    # try:
+    #     threading.Thread(target=run_task).start()
+    # except Exception as e:
+    #     print("Caught an exception", e)
+
+    # threading.Thread(target=run_task).start()
     app.run(threaded=True, host='0.0.0.0', port=port, debug=True)

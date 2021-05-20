@@ -11,7 +11,7 @@ class TxtFragmenter:
         fragments = []
         temp = ''
         for t in textList:
-            if len(temp + ('.' + t)) < 750:
+            if len(temp + ('.' + t)) < 740:
                 temp += ('.' + t)
             else:
                 chunk.append(temp)

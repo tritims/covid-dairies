@@ -4,5 +4,5 @@ def cleanTitle(s):
     ind = 0
     for i in range(len(s)):
         if s[i] == ":":
-            ind = i
-    return title[ind + 1:]
+            ind = i + 1
+    return title[ind:]
