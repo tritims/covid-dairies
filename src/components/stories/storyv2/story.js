@@ -5,6 +5,7 @@ import moment from "moment";
 import { useHistory } from "react-router-dom";
 import "./story.css";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 var colorArray = [
   "#FF6633",
@@ -55,8 +56,9 @@ var colorArray = [
   "#6666FF",
 ];
 
-const Story = ({ data }) => {
+const Story = ({ data, image }) => {
   const history = useHistory();
+  const { t } = useTranslation();
   return (
     <div className={"news-card"}>
       <div
@@ -82,7 +84,11 @@ const Story = ({ data }) => {
       </div>
       <div className="news-card__card-link"></div>
       <img
-        src="https://cdn.dribbble.com/users/1016207/screenshots/3391077/14.jpg"
+        src={
+          image
+            ? image + ".jpg"
+            : "https://cdn.dribbble.com/users/1016207/screenshots/3391077/14.jpg"
+        }
         alt=""
         className="news-card__image"
       />
@@ -117,9 +123,8 @@ const Story = ({ data }) => {
           </div>
           {data.source && (
             <div style={{ position: "relative", zIndex: 10, margin: 5 }}>
-              Source :
+              {t("Source")} :
               <a
-                href={data.link}
                 href={data.link}
                 target="_blank"
                 rel="noreferrer"
@@ -164,7 +169,7 @@ const Story = ({ data }) => {
             className="news-card__read-more_container"
           >
             <span className="news-card__read-more">
-              Read more <i className="fas fa-long-arrow-alt-right"> </i>
+              {t("Read more")} <i className="fas fa-long-arrow-alt-right"> </i>
             </span>
           </div>
         </div>

@@ -6,9 +6,12 @@ import Headroom from "react-headroom";
 import RISHA from "./risha.png";
 import IIT from "./iittp.png";
 import { Divider } from "@material-ui/core";
-import Logo from "./logo.svg";
+import Logo from "../safar.png";
+import Language from "../../../LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 function Toolbar(props) {
+  const { t } = useTranslation();
   return (
     <Headroom>
       <div className="toolbarM">
@@ -17,23 +20,31 @@ function Toolbar(props) {
             <Hamburger click={props.SideToggle} />
           </div>
           <div className="toolbar_logo_align">
-            <img className="toolbar_logo_image" src={IIT} alt="iittp_logo" />
+            <img className="toolbar_logo_image" src={IIT} alt="iitt_logo" />
             <Divider orientation="vertical" flexItem />
             <img className="toolbar_logo_image" src={RISHA} alt="risha_logo" />
           </div>
           <Link to="/" style={{ textDecoration: "none" }}>
             <div className="toolbar_logo toolbar_navigation_items">
-              <img style={{ width: "200px", height: "56px" }} src={Logo} />
+              <img
+                style={{ width: "200px", height: "56px" }}
+                alt="covid_safar"
+                src={Logo}
+              />
+              {/* COVID Diaries */}
             </div>
           </Link>
           <div className="spacer" />
           <div className="toolbar_navigation_items">
             <ul>
               <li>
-                <Link to="/stories">Read </Link>
+                <Link to="/stories">{t("Read")}</Link>
               </li>
               <li>
-                <Link to="/write">Write</Link>
+                <Link to="/write">{t("Write")}</Link>
+              </li>
+              <li>
+                <Language />
               </li>
             </ul>
           </div>

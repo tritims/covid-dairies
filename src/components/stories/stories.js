@@ -7,6 +7,8 @@ import axios from "axios";
 import useViewport from "../utility/useView";
 import SearchBar from "../searchbar/searchbar";
 import Spinner from "../loading/loading";
+import { getImage } from "../singleStory/imageGetter";
+import { useTranslation } from "react-i18next";
 
 const Stories = ({
   page,
@@ -21,6 +23,8 @@ const Stories = ({
   const [storyData, setStory] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const { width } = useViewport();
+  const [images, setImages] = useState([]);
+  const { t } = useTranslation();
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,21 +41,27 @@ const Stories = ({
     const getData = async () => {
       try {
         const data = await axios.get(
-          `http://localhost:5000/api/v1/?date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`
+          `https://coviddiaries.herokuapp.com/api/v1/?date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
         );
         const res = data.data;
         let noStory = res[0].count;
         res.shift();
         setPageCount(Math.floor(noStory / 9 + 1));
         setStory(res);
+        setImages(getImage(["random", "covid", "oxygen"], res.length));
       } catch (error) {
         console.error(error);
       }
     };
 
     getData();
-  }, [page, sortingDate]);
-
+  }, [page, sortingDate, coverage, searchString]);
+  console.log(images);
   const handlePage = (event, value) => {
     setPage(value);
   };
@@ -59,8 +69,10 @@ const Stories = ({
   const AllStoriesv2 = () => (
     <>
       {storyData.length >= 1 &&
-        storyData.map((item) => {
-          return <Story width={width} data={item} key={item._id} />;
+        storyData.map((item, i) => {
+          return (
+            <Story width={width} data={item} key={item._id} image={images[i]} />
+          );
         })}
     </>
   );
@@ -80,7 +92,7 @@ const Stories = ({
               <TextField
                 style={{ marginRight: "10px" }}
                 id="select"
-                label="Order"
+                label={t("Sort by date")}
                 className={classes.root}
                 value={sortingDate}
                 select
@@ -92,7 +104,7 @@ const Stories = ({
                     setPage(1);
                   }}
                 >
-                  Newest
+                  {t("Newest first")}
                 </MenuItem>
                 <MenuItem
                   value="oldest"
@@ -101,13 +113,13 @@ const Stories = ({
                     setPage(1);
                   }}
                 >
-                  Oldest
+                  {t("Oldest first")}
                 </MenuItem>
               </TextField>
               {/* For coverage */}
               <TextField
                 id="select2"
-                label="Coverage"
+                label={t("Show stories from")}
                 className={classes.root}
                 value={coverage}
                 select
@@ -119,7 +131,7 @@ const Stories = ({
                     setPage(1);
                   }}
                 >
-                  Global
+                  {t("World")}
                 </MenuItem>
                 <MenuItem
                   value="india"
@@ -128,7 +140,7 @@ const Stories = ({
                     setPage(1);
                   }}
                 >
-                  India
+                  {t("India")}
                 </MenuItem>
               </TextField>{" "}
             </div>

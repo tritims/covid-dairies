@@ -65,21 +65,22 @@ function MobileStory({ width }) {
 
   useEffect(() => {
     const fetchStory = async () => {
-      const res = await axios.get(`http://localhost:5000/api/v1/id=${id}`);
+      const res = await axios.get(
+        `https://coviddiaries.herokuapp.com/api/v1/id=${id}`
+      );
       setStory(res.data);
       setImage(getImage(res.data.keywords, res.data.content.length));
     };
     fetchStory();
-
-    // console.log(story && story.content && story.content[0]);
   }, [id]);
   const history = useHistory();
   return (
-    <div className="mobilecontainer">
+    <div className="mobilecontainer" style={{ marginBottom: "10px" }}>
       <div className="shareButtton">
         <Button variant="contained" onClick={() => history.goBack()}>
           <i className="fas fa-backward"></i>
         </Button>
+        <div style={{ margin: "15px" }}></div>
         <Button
           onClick={() => {
             navigator.clipboard.writeText(
@@ -102,12 +103,11 @@ function MobileStory({ width }) {
           pageBackground={"#F1E3D0"}
           animationDuration={300}
           showSwipeHint={true}
-          // disableSwipe={true}
           flipOnTouch
         >
           <article className="mobilCover">
             <div style={{ textAlign: "center" }}>
-              <h1>COVID Diary</h1>
+              <h1>COVID Safar</h1>
               {story.source ? (
                 <>
                   <i>by </i>{" "}
@@ -120,11 +120,11 @@ function MobileStory({ width }) {
                   <i>by </i> <div>{story.author}</div>
                 </>
               )}
-            </div>
-          </article>
-          <article className="mobilearticle">
-            <div className="mobilearticleContent">
-              <div className="wavy-h2">Title : {story && story.title}</div>
+              <div className="wavy-h2">
+                Title :{" "}
+                <span className="pageCoverTitle">{story && story.title}</span>
+              </div>
+              <br />
               <div>
                 Keywords:
                 {story &&
@@ -138,7 +138,7 @@ function MobileStory({ width }) {
                         style={{
                           background: `${colorArray[i]}`,
                           color: "white",
-                          marginLeft: "5px",
+                          margin: "2px",
                         }}
                         size="small"
                       />
@@ -146,7 +146,6 @@ function MobileStory({ width }) {
                   })}
               </div>
             </div>
-            <div className="mobilearticlefooter">1</div>
           </article>
 
           {story.content.map((item, i) => (
@@ -154,13 +153,13 @@ function MobileStory({ width }) {
               <div className="mobileImageContainer">
                 <img
                   className="mobileImage"
-                  alt={"My" + i}
+                  alt={"My" + i * 101}
                   src={images.length && images[i] + ".jpg"}
                 />
               </div>
 
               <p className="mobilearticleContent">{item}</p>
-              <div className="mobilearticlefooter">{i + 2}</div>
+              <div className="mobilearticlefooter">{i + 1}</div>
             </article>
           ))}
           <article className="mobilCover">

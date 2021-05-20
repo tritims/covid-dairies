@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./searchbar.css";
 import { InputBase, Paper } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 const Searchbar = ({ searchString, setSearchString }) => {
   const [tempString, setTempString] = useState("");
 
@@ -12,15 +13,15 @@ const Searchbar = ({ searchString, setSearchString }) => {
     setSearchString(tempString);
   };
 
+  const { t } = useTranslation();
   return (
     <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
       <Paper elevation={1} id="search-box">
         <form id="search-form" onSubmit={submit}>
           <InputBase
             id="search-text"
-            placeholder={searchString || "Search story"}
+            placeholder={searchString || t("search-help-text")}
             autoComplete="off"
-            type="text"
             value={tempString}
             onChange={(e) => handleChage(e)}
           />

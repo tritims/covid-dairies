@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import HTMLFlipBook from "react-pageflip";
-import "./flip.scss";
+import "./flip.css";
 import Spinner from "../loading/loading";
 import { Button, Chip } from "@material-ui/core";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import { getImage } from "./imageGetter";
 
-var colorArray = [
+const colorArray = [
   "#FF6633",
   "#FF33FF",
   "#00B3E6",
@@ -97,7 +97,9 @@ const Book = (props) => {
   useEffect(() => {
     const fetchStory = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/v1/id=${id}`);
+        const res = await axios.get(
+          `https://coviddiaries.herokuapp.com/api/v1/id=${id}`
+        );
 
         setStory(res.data);
         setImage(getImage(res.data.keywords, res.data.content.length));
@@ -145,7 +147,7 @@ const Book = (props) => {
                   id="storyBookContainer"
                 >
                   <PageCover>
-                    <h2 className="wavy-h2">COVID Diary</h2>
+                    <h2 className="wavy-h2">COVID Safar</h2>
                     {story.source ? (
                       <>
                         <i>by </i> <strong>{story.source}</strong>
@@ -155,11 +157,13 @@ const Book = (props) => {
                         <i>by </i> <div>{story.author}</div>
                       </>
                     )}
-                  </PageCover>
-                  <Page number={1}>
                     <div className="wavy-h2">
-                      Title : {story && story.title}
+                      Title :{" "}
+                      <span className="pageCoverTitle">
+                        {story && story.title}
+                      </span>
                     </div>
+                    <br />
                     <div>
                       Keywords:
                       {story &&
@@ -173,20 +177,21 @@ const Book = (props) => {
                               style={{
                                 background: `${colorArray[i]}`,
                                 color: "white",
-                                marginLeft: "5px",
+                                margin: "2px",
                               }}
                               size="small"
                             />
                           );
                         })}
                     </div>
-                  </Page>
+                  </PageCover>
+
                   {story.content &&
                     story.content.map((item, i) => (
                       <Page
                         image={images.length > 0 && images[i] + ".jpg"}
                         key={i}
-                        number={i + 2}
+                        number={i + 1}
                       >
                         {item}
                       </Page>

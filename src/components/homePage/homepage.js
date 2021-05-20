@@ -1,41 +1,49 @@
 import React from "react";
 import "./homepage.css";
-import Book from "./book.svg";
+// import Book from "./book.svg";
 import Safar from "./safar.jpg";
 import Featured1 from "./featured1.jpg";
 import Featured3 from "./featured3.jpg";
 import { Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import Footer from "../footer/footer";
+
+import { useTranslation } from "react-i18next";
 
 const Wavy = () => {
+  const { t } = useTranslation();
+
+  const history = useHistory();
   return (
     <div>
       <div className="contain-wavy">
         <div className="wavy-content">
           <div className="wavy-text">
-            <h2 className="wavy-h2">COVID DIARIES</h2>
-            <h1 className="wavy-h1">Let's Write Together</h1>
-            <h3 className="wavy-h3">
-              An initiative by the Research in Intelligent Software & Human
-              Analytics (RISHA) Lab
-            </h3>
+            <h2 className="wavy-h2">{t("COVID Safar")}</h2>
+            <h1 className="wavy-h1">{t("tagline")}</h1>
+            <h3 className="wavy-h3">{t("RISHA initiative")}</h3>
 
             <div className="frame">
               <Link to="/stories">
                 <button className="custom-wavy-btn btn-7">
                   {" "}
-                  <span>Read </span>
+                  <span>{t("Read")}</span>
                 </button>
               </Link>
               <Link to="/">
                 <button className="custom-wavy-btn btn-7">
-                  <span>Write </span>
+                  <span>{t("Write")}</span>
                 </button>
               </Link>
             </div>
           </div>
           <div>
-            <img className="wavy-book" src={Book} alt="bookimage" />
+            <img
+              style={{ borderRadius: "5px" }}
+              className="wavy-book"
+              src={Safar}
+              alt="Safarimage"
+            />
           </div>
         </div>
       </div>
@@ -62,7 +70,7 @@ const Wavy = () => {
           ></path>
         </svg>
       </div>
-
+      {/* 
       <div>
         <div className="showCasecard">
           <div className="showCasethumbnail">
@@ -87,7 +95,7 @@ const Wavy = () => {
           </div>
           <h6 className="showCaseh6">A peek into COVID Journey</h6>
         </div>
-      </div>
+      </div> */}
 
       <div
         style={{
@@ -101,7 +109,7 @@ const Wavy = () => {
           component="h2"
           style={{ fontFamily: "Mulish" }}
         >
-          Featured
+          {t("Featured")}
         </Typography>
         <div className="blog-card">
           <div className="meta">
@@ -129,7 +137,12 @@ const Wavy = () => {
               throat pain.....
             </p>
             <p className="read-more">
-              <a href="#">Read More</a>
+              <span
+                style={{ color: "red", cursor: "pointer" }}
+                onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
+              >
+                {t("Read more")}
+              </span>
             </p>
           </div>
         </div>
@@ -161,11 +174,17 @@ const Wavy = () => {
               home.....
             </p>
             <p className="read-more">
-              <a href="#">Read More</a>
+              <span
+                style={{ color: "red", cursor: "pointer" }}
+                onClick={() => history.push("/story/60a4ceb312891c0feea0422d")}
+              >
+                {t("Read more")}
+              </span>
             </p>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

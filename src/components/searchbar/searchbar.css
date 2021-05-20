@@ -17,7 +17,7 @@
   background: transparent;
   line-height: 15px;
 }
-#search-box input[type="text"] {
+#search-box input {
   padding: 10px 0 5px 1em;
   color: #333;
   outline: none;

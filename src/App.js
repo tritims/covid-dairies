@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Story from "./components/singleStory/mobileStory";
 import Flip from "./components/singleStory/flipPage";
 import useViewport from "./components/utility/useView";
-import Footer from "./components/footer/footer";
+import "./i18n";
 
 function App() {
   const [sortingDate, setSortingDate] = useState("newest");
@@ -46,7 +46,6 @@ function App() {
         <Route exact path="/stories" component={StoriesM} />
         <Route exact path="/story/:id" component={IndivisualStory} />
       </div>
-      <Footer />
     </Router>
   );
 }
