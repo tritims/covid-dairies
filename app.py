@@ -1,6 +1,7 @@
 import datetime
 import os
 import random
+import re
 import string
 from datetime import datetime
 from urllib.request import Request, urlopen as uOpen
@@ -117,7 +118,8 @@ def slate():
                     'abusive': dataTags['abusive'],
                     'emotions': dataTags['emotions'],
                     'author': author,
-                    'coverage': 'global'
+                    'coverage': 'global',
+                    'language': "en"
                 }
                 storyCollection.insert_one(data)
                 print(f"Saved {saveCount} succesfully")
@@ -219,14 +221,15 @@ def toi():
                     'cities': dataTags['cities'],
                     'abusive': dataTags['abusive'],
                     'emotions': dataTags['emotions'],
-                    'coverage': 'india'
+                    'coverage': 'india',
+                    'language': "en"
                 }
                 storyCollection.insert_one(data)
                 print(f"Saved {saveCount} succesfully")
                 saveCount += 1
             except Exception as e:
                 print(f"An Error Occured: {e}")
-    print("Successfully scraped")
+    return ("Successfully scraped"), 200
 
 
 # search string
@@ -239,17 +242,24 @@ def getStory():
     page = int(request.args.get('page', 1))
     coverage = request.args.get('coverage') or 'global'
     searchString = request.args.get('search')
+    lang = request.args.get('language') or 'en'
+
+    if lang == 'null':
+        lang = 'en'
 
     if searchString:
+        regex = re.compile(searchString, re.IGNORECASE)
         if coverage == 'global':
-            query = {"$text": {"$search": searchString}}
+            query = {'language': lang, "$or": [{"content": {"$regex": regex}}, {"title": {"$regex": regex}}]}
         else:
-            query = {"$text": {"$search": searchString}, 'coverage': coverage}
+            query = {'coverage': coverage,
+                     'language': lang, "$or": [{"content": {"$regex": regex}}, {"title": {"$regex": regex}}]}
     else:
         if coverage == 'global':
-            query = {}
+            query = {'language': lang}
         else:
-            query = {'coverage': coverage}
+            query = {'coverage': coverage, 'language': lang}
+
     try:
         totalFilteredCount = storyCollection.count_documents(query)
         if order == 'newest':
