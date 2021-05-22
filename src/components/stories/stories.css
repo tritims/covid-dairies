@@ -15,6 +15,7 @@
    */
   min-height: 90vh;
   background: radial-gradient(#eea849 45%, darkorchid 90%);
+  margin-bottom: 0;
 }
 
 .filterclass {

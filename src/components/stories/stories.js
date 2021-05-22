@@ -20,7 +20,7 @@ const Stories = ({
   searchString,
   setSearchString,
 }) => {
-  const [storyData, setStory] = useState([]);
+  const [storyData, setStory] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const { width } = useViewport();
   const [images, setImages] = useState([]);
@@ -37,11 +37,12 @@ const Stories = ({
     },
   }));
 
+  let lang = localStorage.getItem("lang");
   useEffect(() => {
     const getData = async () => {
       try {
         const data = await axios.get(
-          `https://coviddiaries.herokuapp.com/api/v1/?date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
+          `https://coviddiaries.herokuapp.com/api/v1/?language=${lang}&date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
           {
             headers: {
               "Access-Control-Allow-Origin": "*",
@@ -58,10 +59,10 @@ const Stories = ({
         console.error(error);
       }
     };
-
     getData();
-  }, [page, sortingDate, coverage, searchString]);
-  console.log(images);
+    console.log(localStorage.getItem("lang"));
+  }, [page, sortingDate, coverage, searchString, lang]);
+
   const handlePage = (event, value) => {
     setPage(value);
   };
@@ -80,7 +81,7 @@ const Stories = ({
 
   return (
     <div className="storiesBackground">
-      {storyData.length > 0 ? (
+      {storyData ? (
         <>
           <div className="filterclass">
             <div
@@ -119,7 +120,7 @@ const Stories = ({
               {/* For coverage */}
               <TextField
                 id="select2"
-                label={t("Show stories from")}
+                label={t("Stories")}
                 className={classes.root}
                 value={coverage}
                 select

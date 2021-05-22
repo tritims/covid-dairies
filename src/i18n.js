@@ -6,13 +6,13 @@ i18n
   .use(Backend)
   .use(initReactI18next)
   .init({
-    lng: "en",
+    lng: localStorage.getItem("lang") ? localStorage.getItem("lang") : "en",
     backend: {
       /* translation file path */
       loadPath: "/assets/i18n/{{ns}}/{{lng}}.json",
     },
     fallbackLng: "en",
-    debug: true,
+    // debug: true,
     /* can have multiple namespace, in case you want to divide a huge translation into smaller pieces and load them on demand */
     ns: ["translations"],
     defaultNS: "translations",

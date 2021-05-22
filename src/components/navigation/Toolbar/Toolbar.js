@@ -41,7 +41,13 @@ function Toolbar(props) {
                 <Link to="/stories">{t("Read")}</Link>
               </li>
               <li>
-                <Link to="/write">{t("Write")}</Link>
+                <a
+                  href="https://forms.gle/TuHpKdWhU5oqmZHk6"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t("Write")}
+                </a>
               </li>
               <li>
                 <Language />

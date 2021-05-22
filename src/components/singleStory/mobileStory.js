@@ -75,7 +75,7 @@ function MobileStory({ width }) {
   }, [id]);
   const history = useHistory();
   return (
-    <div className="mobilecontainer" style={{ marginBottom: "10px" }}>
+    <div className="mobilecontainer" style={{ paddingBottom: "10px" }}>
       <div className="shareButtton">
         <Button variant="contained" onClick={() => history.goBack()}>
           <i className="fas fa-backward"></i>
@@ -108,14 +108,7 @@ function MobileStory({ width }) {
           <article className="mobilCover">
             <div style={{ textAlign: "center" }}>
               <h1>COVID Safar</h1>
-              {story.source ? (
-                <>
-                  <i>by </i>{" "}
-                  <div>
-                    <strong>{story.source}</strong>
-                  </div>
-                </>
-              ) : (
+              {story.author && (
                 <>
                   <i>by </i> <div>{story.author}</div>
                 </>

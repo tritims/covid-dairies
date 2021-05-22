@@ -1,12 +1,13 @@
 .mobilecontainer {
   width: 100%;
-  height: 89.4vh;
+  height: calc(100vh - 8.5vh);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: darkorchid 90%;
+  background: darkorchid 100%;
   background: radial-gradient(#eea849 45%, darkorchid 90%);
+  bottom: 0;
 }
 .mobilCover {
   height: 100%;

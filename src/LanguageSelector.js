@@ -7,6 +7,7 @@ const LanguageSelector = () => {
 
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
+    localStorage.setItem("lang", event.target.value);
   };
 
   // return (
@@ -17,17 +18,20 @@ const LanguageSelector = () => {
   // );
   return (
     <div className="select">
-      <select onChange={changeLanguage}>
-        <option
-          className="selectOption"
-          value="en"
-          name="language"
-          defaultChecked
-        >
+      <select
+        value={
+          localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
+        }
+        onChange={changeLanguage}
+      >
+        <option className="selectOption" value="en" name="language">
           English
         </option>
         <option value="hi" name="language">
           हिन्दी
+        </option>
+        <option value="te" name="language">
+          తెలుగు
         </option>
       </select>
     </div>

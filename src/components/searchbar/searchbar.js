@@ -20,7 +20,7 @@ const Searchbar = ({ searchString, setSearchString }) => {
         <form id="search-form" onSubmit={submit}>
           <InputBase
             id="search-text"
-            placeholder={searchString || t("search-help-text")}
+            placeholder={searchString || t("Search story")}
             autoComplete="off"
             value={tempString}
             onChange={(e) => handleChage(e)}

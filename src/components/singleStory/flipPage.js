@@ -137,70 +137,64 @@ const Book = (props) => {
 
           <div className="hero-body">
             <div className="storycenter">
-              {
-                <HTMLFlipBook
-                  size="fixed"
-                  width={props.width > 1050 ? 500 : 360}
-                  height={props.width > 1050 ? 620 : 540}
-                  showCover={true}
-                  maxShadowOpacity={0.7}
-                  id="storyBookContainer"
-                >
-                  <PageCover>
-                    <h2 className="wavy-h2">COVID Safar</h2>
-                    {story.source ? (
-                      <>
-                        <i>by </i> <strong>{story.source}</strong>
-                      </>
-                    ) : (
-                      <>
-                        <i>by </i> <div>{story.author}</div>
-                      </>
-                    )}
-                    <div className="wavy-h2">
-                      Title :{" "}
-                      <span className="pageCoverTitle">
-                        {story && story.title}
-                      </span>
-                    </div>
-                    <br />
-                    <div>
-                      Keywords:
-                      {story &&
-                        story.keywords &&
-                        story.keywords.map((item, i) => {
-                          return (
-                            <Chip
-                              className="storyChip"
-                              key={item}
-                              label={item}
-                              style={{
-                                background: `${colorArray[i]}`,
-                                color: "white",
-                                margin: "2px",
-                              }}
-                              size="small"
-                            />
-                          );
-                        })}
-                    </div>
-                  </PageCover>
+              <HTMLFlipBook
+                size="fixed"
+                width={props.width > 1050 ? 500 : 360}
+                height={props.width > 1050 ? 620 : 540}
+                showCover={true}
+                maxShadowOpacity={0.7}
+                id="storyBookContainer"
+              >
+                <PageCover>
+                  <h2 className="wavy-h2 front-title">COVID Safar</h2>
+                  {story.author && (
+                    <>
+                      <i>by </i> <div>{story.author}</div>
+                    </>
+                  )}
+                  <div className="wavy-h2">
+                    <span className="coverTitle">Title</span> :{" "}
+                    <span className="pageCoverTitle">
+                      {story && story.title}
+                    </span>
+                  </div>
+                  <br />
+                  <div>
+                    Keywords:
+                    {story &&
+                      story.keywords &&
+                      story.keywords.map((item, i) => {
+                        return (
+                          <Chip
+                            className="storyChip"
+                            key={item}
+                            label={item}
+                            style={{
+                              background: `${colorArray[i]}`,
+                              color: "white",
+                              margin: "2px",
+                            }}
+                            size="small"
+                          />
+                        );
+                      })}
+                  </div>
+                </PageCover>
 
-                  {story.content &&
-                    story.content.map((item, i) => (
-                      <Page
-                        image={images.length > 0 && images[i] + ".jpg"}
-                        key={i}
-                        number={i + 1}
-                      >
-                        {item}
-                      </Page>
-                    ))}
-                  <PageCover>
-                    <h2 className="wavy-h2">The End</h2>
-                  </PageCover>
-                </HTMLFlipBook>
-              }
+                {story.content &&
+                  story.content.map((item, i) => (
+                    <Page
+                      image={images.length > 0 && images[i] + ".jpg"}
+                      key={i}
+                      number={i + 1}
+                    >
+                      {item}
+                    </Page>
+                  ))}
+                <PageCover>
+                  <h2 className="wavy-h2">The End</h2>
+                </PageCover>
+              </HTMLFlipBook>
             </div>
           </div>
         </section>

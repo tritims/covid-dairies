@@ -14,11 +14,11 @@ const Footer = () => {
           algorithms but cannot ensure absence of abusive language stories that
           bypass our algorithms.
         </h2>
-        <h2 className="text21">
-          If you are facing any problem contact us by filling this form
-        </h2>
-        <h2 className="text3">
+        {/* <h2 className="text21">
           Copyright &copy; {new Date().getFullYear()} COVID Safar
+        </h2> */}
+        <h2 className="text21" style={{ marginTop: "10px" }}>
+          If you are facing any problem contact us by filling this form
         </h2>
       </footer>
     </div>

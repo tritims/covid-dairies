@@ -33,9 +33,13 @@ function SideDrawer(props) {
             </Link>
           </li>
           <li>
-            <Link onClick={() => props.click(false)} to="/addExperience">
+            <a
+              href="https://forms.gle/TuHpKdWhU5oqmZHk6"
+              target="_blank"
+              rel="noreferrer"
+            >
               {t("Write")}
-            </Link>
+            </a>
           </li>
           <li>
             <Language />
