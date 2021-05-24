@@ -140,17 +140,23 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   text-decoration: none;
-  width: 7rem;
   position: relative;
   z-index: 5;
   cursor: pointer;
   font-family: Mulish;
+  margin-right: 10px;
 }
 
+.news-card__read-more-hover:hover {
+  box-shadow: -7px 20px 20px rgba(255, 255, 255, 0.3),
+    -4px -4px 5px 5px rgba(255, 255, 255, 0.3),
+    7px 7px 20px 20px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+}
 .news-card__read-more_container {
   margin-top: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: 10px;
 }
 
 .news-card__read-more i {

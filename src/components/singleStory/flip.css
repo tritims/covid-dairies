@@ -117,7 +117,8 @@
 }
 .pageCoverTitle {
   font-family: "Newsreader", cursive;
-  font-size: 19px;
+  font-size: 24px;
+  font-weight: 600;
 }
 .page.page-cover h2 {
   text-align: center;
@@ -147,4 +148,8 @@
   margin: 10px;
   display: flex;
   justify-content: space-between;
+}
+.coverauthor {
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }

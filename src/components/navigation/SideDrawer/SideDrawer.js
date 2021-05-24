@@ -22,7 +22,8 @@ function SideDrawer(props) {
           alt="covid-safar"
           style={{ width: "200px", height: "56px" }}
           src={Logo}
-        />
+        />{" "}
+        <span className="sidebar_risha_lab"> An initiative by RISHA Lab</span>
         {/* <div className="toolbar_logo">COVID Safar</div> */}
       </Link>
       <div className="sidebar_navigation_items">

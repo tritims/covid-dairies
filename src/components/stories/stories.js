@@ -22,6 +22,7 @@ const Stories = ({
 }) => {
   const [storyData, setStory] = useState(null);
   const [pageCount, setPageCount] = useState(0);
+  const [storyCount, setStoryCount] = useState(0);
   const { width } = useViewport();
   const [images, setImages] = useState([]);
   const { t } = useTranslation();
@@ -52,6 +53,7 @@ const Stories = ({
         const res = data.data;
         let noStory = res[0].count;
         res.shift();
+        setStoryCount(noStory);
         setPageCount(Math.floor(noStory / 9 + 1));
         setStory(res);
         setImages(getImage(["random", "covid", "oxygen"], res.length));
@@ -60,7 +62,6 @@ const Stories = ({
       }
     };
     getData();
-    console.log(localStorage.getItem("lang"));
   }, [page, sortingDate, coverage, searchString, lang]);
 
   const handlePage = (event, value) => {
@@ -84,6 +85,15 @@ const Stories = ({
       {storyData ? (
         <>
           <div className="filterclass">
+            <span
+              style={{
+                color: "#fff",
+                marginTop: "10px",
+              }}
+            >
+              {(page - 1) * 9 + 1} -{" "}
+              {page * 9 < storyCount ? page * 9 : storyCount} stories
+            </span>
             <div
               style={{
                 padding: "10px",
@@ -148,6 +158,7 @@ const Stories = ({
             <SearchBar
               searchString={searchString}
               setSearchString={setSearchString}
+              setPage={setPage}
             />
           </div>
 

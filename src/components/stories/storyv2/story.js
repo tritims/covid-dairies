@@ -168,7 +168,7 @@ const Story = ({ data, image }) => {
             }}
             className="news-card__read-more_container"
           >
-            <span className="news-card__read-more">
+            <span className="news-card__read-more news-card__read-more-hover">
               {t("Read more")} <i className="fas fa-long-arrow-alt-right"> </i>
             </span>
           </div>

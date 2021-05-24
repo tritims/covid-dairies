@@ -8,6 +8,8 @@ import { Button, Chip } from "@material-ui/core";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import { getImage } from "./imageGetter";
+import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 const colorArray = [
   "#FF6633",
@@ -93,7 +95,7 @@ const Book = (props) => {
   const [mount, setMount] = useState(true);
   const history = useHistory();
   const [images, setImage] = useState([]);
-
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchStory = async () => {
       try {
@@ -146,21 +148,33 @@ const Book = (props) => {
                 id="storyBookContainer"
               >
                 <PageCover>
-                  <h2 className="wavy-h2 front-title">COVID Safar</h2>
-                  {story.author && (
-                    <>
-                      <i>by </i> <div>{story.author}</div>
-                    </>
-                  )}
                   <div className="wavy-h2">
-                    <span className="coverTitle">Title</span> :{" "}
                     <span className="pageCoverTitle">
                       {story && story.title}
-                    </span>
+                    </span>{" "}
+                    <div>
+                      {" "}
+                      {story.author ? (
+                        <>
+                          <i>By </i>{" "}
+                          <div className="coverauthor">{story.author}</div>
+                        </>
+                      ) : (
+                        <>
+                          <strong>{t("Source")}:</strong> {story.source}
+                        </>
+                      )}
+                    </div>
+                    {story.dateTime && (
+                      <span>
+                        {t("Date")} :{" "}
+                        {moment(story.dateTime).format("D MMMM YYYY")}
+                      </span>
+                    )}
                   </div>
                   <br />
                   <div>
-                    Keywords:
+                    {t("Keywords")}:
                     {story &&
                       story.keywords &&
                       story.keywords.map((item, i) => {

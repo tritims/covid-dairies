@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./searchbar.css";
 import { InputBase, Paper } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
-const Searchbar = ({ searchString, setSearchString }) => {
+
+const Searchbar = ({ searchString, setSearchString, setPage }) => {
   const [tempString, setTempString] = useState("");
 
   const handleChage = (e) => {
@@ -10,6 +11,7 @@ const Searchbar = ({ searchString, setSearchString }) => {
   };
 
   const submit = () => {
+    setPage(1);
     setSearchString(tempString);
   };
 

@@ -1,53 +1,96 @@
 import React from "react";
 import "./homepage.css";
-// import Book from "./book.svg";
 import Safar from "./safar.jpg";
-import Featured1 from "./featured1.jpg";
-import Featured3 from "./featured3.jpg";
-import { Typography } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { Typography, Paper, Divider } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 import { useTranslation } from "react-i18next";
+
+const SimpleSlider = () => {
+  const { t } = useTranslation();
+  const history = useHistory();
+
+  var settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    accessibility: false,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+  return (
+    <Slider {...settings}>
+      <div>
+        <div className="featuresTitle"> {t("Featured1 Title")}</div>
+        <h4 className="featuredAuthor">{t("Featured1 Author")} </h4>
+        <Divider />
+        <p className="ptagdescription">{t("Featured1 Content")}....</p>{" "}
+        <div
+          onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
+          className="news-card__read-more_container"
+        >
+          <span className="news-card__read-more">
+            {t("Read more")} <i className="fas fa-long-arrow-alt-right"> </i>
+          </span>
+        </div>
+      </div>
+      <div>
+        <div className="featuresTitle"> {t("Featured2 Title")}</div>
+        <h4 className="featuredAuthor">{t("Featured2 Author")} </h4>
+        <Divider />
+        <p className="ptagdescription">{t("Featured2 Content")}....</p>{" "}
+        <div
+          onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
+          className="news-card__read-more_container"
+        >
+          <span className="news-card__read-more">
+            {t("Read more")} <i className="fas fa-long-arrow-alt-right"> </i>
+          </span>
+        </div>
+      </div>
+    </Slider>
+  );
+};
 
 const Wavy = () => {
   const { t } = useTranslation();
 
-  const history = useHistory();
   return (
     <div>
       <div className="contain-wavy">
         <div className="wavy-content">
-          <div className="wavy-text">
-            <h2 className="wavy-h2">{t("COVID Safar")}</h2>
-            <h1 className="wavy-h1">{t("tagline")}</h1>
-            <h3 className="wavy-h3">{t("RISHA initiative")}</h3>
-
-            <div className="frame">
-              <Link to="/stories">
-                <button className="custom-wavy-btn btn-7">
-                  {" "}
-                  <span>{t("Read")}</span>
-                </button>
-              </Link>
-              <a
-                href="https://forms.gle/TuHpKdWhU5oqmZHk6"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <button className="custom-wavy-btn btn-7">
-                  <span>{t("Write")}</span>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div>
+          <div className="banner-header">
             <img
               style={{ borderRadius: "5px" }}
               className="wavy-book"
               src={Safar}
               alt="Safarimage"
             />
+            <h1 className="wavy-h1">{t("tagline")}</h1>
+            <h3 className="wavy-h3">{t("RISHA initiative")}</h3>
+          </div>
+          <div>
+            <Paper elevation={0} className="Featurecard-Container">
+              <Typography
+                variant="h4"
+                component="h4"
+                style={{
+                  fontFamily: "Mulish",
+                  marginTop: "7px",
+                  textAlign: "center",
+                }}
+              >
+                {t("Featured")}
+              </Typography>
+
+              <SimpleSlider />
+            </Paper>
           </div>
         </div>
       </div>
@@ -74,94 +117,7 @@ const Wavy = () => {
           ></path>
         </svg>
       </div>
-      {/* 
-      <div>
-        <div className="showCasecard">
-          <div className="showCasethumbnail">
-            <img
-              className="showCaseimgleft"
-              src={Safar}
-              style={{ height: "100%" }}
-              alt="covid-safar"
-            />
-          </div>
-          <div className="showCaseright">
-            <h1 className="showCaseh1">What is COVID Safar?</h1>
 
-            <div className="showCaseseparator"></div>
-            <p className="showCasep">Description goes here</p>
-          </div>
-          <div className="absolutesmall">
-            <h1 className="showCaseh1">What is COVID Safar ?</h1>
-
-            <div className="showCaseseparator"></div>
-            <p className="showCasep">Description goes here</p>
-          </div>
-          <h6 className="showCaseh6">A peek into COVID Journey</h6>
-        </div>
-      </div> */}
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          variant="h2"
-          component="h2"
-          style={{ fontFamily: "Mulish", marginTop: "7px" }}
-        >
-          {t("Featured")}
-        </Typography>
-        <div className="blog-card">
-          <div className="meta">
-            <div
-              className="photo"
-              style={{
-                backgroundImage: `url(${Featured1})`,
-              }}
-            ></div>
-          </div>
-          <div className="description">
-            <h2>{t("Featured1 Title")}</h2>
-            <h4>{t("Featured1 Author")} </h4>
-            <p className="ptagdescription">{t("Featured1 Content")}....</p>
-            <p className="read-more">
-              <span
-                style={{ color: "red", cursor: "pointer" }}
-                onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
-              >
-                {t("Read more")}
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className="blog-card alt">
-          <div className="meta">
-            <div
-              className="photo"
-              style={{
-                backgroundImage: `url(${Featured3})`,
-              }}
-            ></div>
-          </div>
-          <div className="description">
-            <h2>{t("Featured2 Title")}</h2>
-            <h4>{t("Featured2 Author")}</h4>
-            <p className="ptagdescription">{t("Featured2 Content")}....</p>
-            <p className="read-more">
-              <span
-                style={{ color: "red", cursor: "pointer" }}
-                onClick={() => history.push("/story/60a4ceb312891c0feea0422d")}
-              >
-                {t("Read more")}
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
       <Footer />
     </div>
   );

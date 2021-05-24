@@ -8,6 +8,8 @@ import { getImage } from "./imageGetter";
 import { useHistory } from "react-router-dom";
 import { Button, Chip } from "@material-ui/core";
 import Swal from "sweetalert2";
+import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 var colorArray = [
   "#FF6633",
@@ -62,6 +64,7 @@ function MobileStory({ width }) {
   const [story, setStory] = useState();
   let { id } = useParams();
   const [images, setImage] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchStory = async () => {
@@ -107,19 +110,28 @@ function MobileStory({ width }) {
         >
           <article className="mobilCover">
             <div style={{ textAlign: "center" }}>
-              <h1>COVID Safar</h1>
-              {story.author && (
-                <>
-                  <i>by </i> <div>{story.author}</div>
-                </>
-              )}
               <div className="wavy-h2">
-                Title :{" "}
-                <span className="pageCoverTitle">{story && story.title}</span>
+                <span className="pageCoverTitle">{story && story.title}</span>{" "}
+                <div>
+                  {story.author ? (
+                    <>
+                      <i>by </i> <div>{story.author}</div>
+                    </>
+                  ) : (
+                    story.source && (
+                      <>
+                        <i>{t("Source")}:</i> {story.source}
+                      </>
+                    )
+                  )}
+                </div>
+                <span>
+                  {t("Date")} : {moment(story.dateTime).format("D MMMM YYYY")}
+                </span>
               </div>
               <br />
               <div>
-                Keywords:
+                {t("Keywords")}:
                 {story &&
                   story.keywords &&
                   story.keywords.map((item, i) => {

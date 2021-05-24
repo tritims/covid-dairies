@@ -48,7 +48,14 @@
 .toolbar_navigation_items li {
   padding: 0 1.5rem;
 }
-
+.toolbar_risha_lab {
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+  left: 230px;
+  color: rgb(129, 109, 109);
+  text-decoration: none;
+}
 .toolbar_navigation_items a {
   color: #181818;
   text-decoration: none;
