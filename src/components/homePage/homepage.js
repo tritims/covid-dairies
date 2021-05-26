@@ -154,17 +154,29 @@ const WriteSection = () => {
           {t('Publish your COVID story with Covid Safar')}
         </h2>
       </div>
-      <Button style={{
-        margin: "0 auto",
-        height: "80px",
-        display: "flex",
-        fontSize: "3vh",
-        fontFamily: "Mulish",
-        fontweight: "bold",
-      }
-      } variant="contained" color="secondary" data-aos="zoom-in">
-        {t('Write Your Story')}
-      </Button>
+
+      <a
+        href="https://forms.gle/TuHpKdWhU5oqmZHk6"
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          textDecoration: "none"
+        }}
+      >
+        <Button style={{
+          margin: "0 auto",
+          height: "80px",
+          display: "flex",
+          fontSize: "3vh",
+          fontFamily: "Mulish",
+          fontweight: "bold",
+        }
+        } variant="contained" color="secondary" data-aos="zoom-in">
+          {t('Write Your Story')}
+        </Button>
+      </a>
+
+
     </div >
   )
 }
@@ -211,7 +223,7 @@ const OurTeamSection = () => {
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                   {t('Shriram Shanbhag')}
+                    {t('Shriram Shanbhag')}
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -226,7 +238,7 @@ const OurTeamSection = () => {
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                   {t('Abhishek Gupta')}
+                    {t('Abhishek Gupta')}
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -241,7 +253,7 @@ const OurTeamSection = () => {
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                   {t('Abhay Singh')}
+                    {t('Abhay Singh')}
                   </CardContent>
                 </CardActionArea>
               </Card>
