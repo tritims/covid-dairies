@@ -53,10 +53,10 @@ const SimpleSlider = () => {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt="Contemplative Reptile"
+            alt="img"
             height="140"
             src={featured1}
-            title="Contemplative Reptile"
+            title="img"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" style={{ fontFamily: "Mulish" }}>
@@ -79,10 +79,10 @@ const SimpleSlider = () => {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt="Contemplative Reptile"
+            alt="img"
             height="140"
             image={featured2}
-            title="Contemplative Reptile"
+            title="img"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" style={{ fontFamily: "Mulish" }}>
@@ -151,7 +151,7 @@ const WriteSection = () => {
     <div className="write-landing-page">
       <div className="write-landing-content">
         <h2 className="wavy-h1" data-aos="fade-up">
-          Publish your COVID story for the world to read
+          {t('Publish your COVID story with Covid Safar')}
         </h2>
       </div>
       <Button style={{
@@ -163,7 +163,7 @@ const WriteSection = () => {
         fontweight: "bold",
       }
       } variant="contained" color="secondary" data-aos="zoom-in">
-        Write Your Story
+        {t('Write Your Story')}
       </Button>
     </div >
   )
@@ -181,7 +181,7 @@ const OurTeamSection = () => {
     <div className="our-team-container">
       <div className="our-team-content">
         <h1 className="wavy-h1" data-aos="fade-right">
-          Our Team
+          {t('Our Team')}
         </h1>
       </div>
       <div className="team-members-container" data-aos="fade-left">
@@ -192,11 +192,11 @@ const OurTeamSection = () => {
                 <CardActionArea>
                   <CardMedia
                     image={avatar1}
-                    title="Contemplative Reptile"
+                    title="img"
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                    Dr. Sridhar Chimalakonda
+                    {t('Dr. Sridhar Chimalakonda')}
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -207,11 +207,11 @@ const OurTeamSection = () => {
                 <CardActionArea>
                   <CardMedia
                     image={avatar2}
-                    title="Contemplative Reptile"
+                    title="img"
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                   Shriram Shanbhag
+                   {t('Shriram Shanbhag')}
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -222,11 +222,11 @@ const OurTeamSection = () => {
                 <CardActionArea>
                   <CardMedia
                     image={avatar3}
-                    title="Contemplative Reptile"
+                    title="img"
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                   Abhishek Gupta
+                   {t('Abhishek Gupta')}
                   </CardContent>
                 </CardActionArea>
               </Card>
@@ -237,11 +237,11 @@ const OurTeamSection = () => {
                 <CardActionArea>
                   <CardMedia
                     image={avatar4}
-                    title="Contemplative Reptile"
+                    title="img"
                     className="dev-content"
                   />
                   <CardContent class="dev-name">
-                   Abhay Singh
+                   {t('Abhay Singh')}
                   </CardContent>
                 </CardActionArea>
               </Card>
