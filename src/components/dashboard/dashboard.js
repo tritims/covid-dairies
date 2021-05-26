@@ -11,6 +11,7 @@ function Dash({ isAuth, loading, setAuth, setLoading }) {
   const [mount, setMount] = useState(true);
 
   useEffect(() => {
+    
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
       const res = await axios.post(

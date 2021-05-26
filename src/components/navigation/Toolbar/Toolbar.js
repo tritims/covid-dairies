@@ -13,8 +13,8 @@ import { useTranslation } from "react-i18next";
 function Toolbar(props) {
   const { t } = useTranslation();
   return (
-    <Headroom>
-      <div className="toolbarM">
+    <Headroom className="toolbar-wrapper">
+      <div className="toolbarM" id="toolbar-top">
         <div className="toolbar_navigation">
           <div className="toggle_toolbar_button">
             <Hamburger click={props.SideToggle} />

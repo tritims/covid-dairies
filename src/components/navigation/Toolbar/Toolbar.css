@@ -3,6 +3,9 @@
 .toolbarM {
   /* position: sticky;
   position: -webkit-sticky; */
+  position: absolute;
+  width: -webkit-fill-available;
+  width: -moz-available;
   background: #fff;
   height: 56px;
   top: 0;
@@ -11,6 +14,19 @@
   margin: 0;
   box-shadow: 0 0 10px 0 rgb(50 50 50 / 55%);
   z-index: 1;
+}
+
+.smaller {
+  height: 42px;
+  font-size: small;
+}
+
+.toolbar-wrapper {
+  height: 80px;
+}
+
+.headroom {
+  position: relative;
 }
 
 .toolbar_navigation {

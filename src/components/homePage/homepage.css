@@ -30,6 +30,7 @@
 }
 
 .contain-wavy {
+  min-height: 100vh;
   background: darkorchid;
   opacity: 0.8;
   padding: 50px;
@@ -127,9 +128,71 @@
   font-family: Mulish;
   font-weight: bold;
   font-size: 20px;
+  text-align: center;
 }
+
+.write-landing-page {
+  min-height: 500px;
+  background: brown;
+  opacity: 0.8;
+  padding: 20px;
+  height: 100vh;
+}
+
+.our-team-container {
+  min-height: 500px;
+  background: black;
+  opacity: 0.8;
+  padding: 20px;
+}
+
+.our-team-content{
+  color: #fff;
+}
+
+.team-members-container {
+
+}
+
+.team-mambers-content {
+
+}
+
+.dev-card {
+  width: 200px;
+  height: 250px;
+  margin: auto;
+}
+
+.dev-content {
+  height: 200px;
+}
+
+.dev-name {
+  text-align: center;
+  font-family: 'Mulish';
+  font-size: 3vh;
+}
+
+.devteam-landing-page {
+  min-height: 500px;
+  background: darkorchid;
+  opacity: 0.8;
+  padding: 20px;
+}
+
+.write-landing-content {
+  margin-top: 25%;
+  color: #fff;
+  font-size: x-large;
+  /* background: chartreuse;
+  min-width: 500px;
+  min-height: 200px; */
+}
+
 .Featurecard-Container {
-  padding: 7px;
+  /* padding: 7px; */
+  padding: 7px 7px 0px 7px;
   width: 40vw;
   margin-left: 10px;
   min-height: 43.5vh;

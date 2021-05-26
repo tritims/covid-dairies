@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="body">
       <footer id="red">
         <h2 className="text2">
-          Disclaimer : The platform is under active development.The content on
+          Disclaimer : The platform is under active development. The content on
           this platform comes from publicly available sources and our users. We
           do not fact check any of the contents and thereby hold no
           responsibility for story that is non factual or controversial.
@@ -15,7 +15,7 @@ const Footer = () => {
         </h2>
 
         <h2 className="text21" style={{ marginTop: "10px" }}>
-          for any Feedback, contact us at RISHA Lab, IIT Tirupati |
+          For any Feedback, contact us at RISHA Lab, IIT Tirupati |
           <a
             className="footermail"
             href="mailto:rishalab@iittp.ac.in"

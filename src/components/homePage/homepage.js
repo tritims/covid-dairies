@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./homepage.css";
 import Safar from "./safar.jpg";
+import SafarTiny from './safar_tiny.jpg'
 import { Typography, Paper, Divider } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Fade from "@material-ui/core/Fade";
+import { ProgressiveImage } from 'react-progressive-image-loading'
+
+
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import featured1 from './featured1.jpg'
+import featured2 from './featured2.jpg'
+import avatar1 from './a1.png'
+import avatar2 from './a2.png'
+import avatar3 from './a3.png'
+import avatar4 from './a4.png'
+import Grid from '@material-ui/core/Grid';
+// import Typography from '@material-ui/core/Typography';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import { useTranslation } from "react-i18next";
 
@@ -22,14 +44,72 @@ const SimpleSlider = () => {
     accessibility: false,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000,
+    fade: true,
+    autoplaySpeed: 4500,
   };
   return (
-    <Slider {...settings}>
-      <div>
+    <Slider {...settings} >
+      <Card >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="140"
+            src={featured1}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2" style={{ fontFamily: "Mulish" }}>
+              {t("Featured1 Title")}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p" style={{ fontFamily: "Mulish" }}>
+              {t("Featured1 Content").slice(0, 100) + "..."}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary"
+            onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}>
+            {t('Read More')}
+          </Button>
+        </CardActions>
+      </Card>
+
+      <Card >
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="140"
+            image={featured2}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2" style={{ fontFamily: "Mulish" }}>
+              {t("Featured2 Title")}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p" style={{ fontFamily: "Mulish" }}>
+              {t("Featured2 Content").slice(0, 100) + "..."}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions style={{ float: "right" }}>
+          <Button size="small" color="primary"
+            onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}>
+            {t('Read More')}
+          </Button>
+        </CardActions>
+      </Card>
+      {/* <div>
         <div className="featuresTitle"> {t("Featured1 Title")}</div>
         <h4 className="featuredAuthor">{t("Featured1 Author")} </h4>
         <Divider />
+        <img
+          style={{ borderRadius: "5px" }}
+          className="wavy-book"
+          src={getImage(t("Featured1 Content"), 1)[0]}
+          alt="Safarimage"
+        />
         <p className="ptagdescription">{t("Featured1 Content")}....</p>{" "}
         <div
           onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
@@ -53,10 +133,127 @@ const SimpleSlider = () => {
             {t("Read more")} <i className="fas fa-long-arrow-alt-right"> </i>
           </span>
         </div>
-      </div>
+      </div> */}
     </Slider>
+
   );
 };
+
+const WriteSection = () => {
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    AOS.init({
+      duration: 2000
+    })
+  })
+  return (
+    <div className="write-landing-page">
+      <div className="write-landing-content">
+        <h2 className="wavy-h1" data-aos="fade-up">
+          Publish your COVID story for the world to read
+        </h2>
+      </div>
+      <Button style={{
+        margin: "0 auto",
+        height: "80px",
+        display: "flex",
+        fontSize: "3vh",
+        fontFamily: "Mulish",
+        fontweight: "bold",
+      }
+      } variant="contained" color="secondary" data-aos="zoom-in">
+        Write Your Story
+      </Button>
+    </div >
+  )
+}
+
+const OurTeamSection = () => {
+  const { t } = useTranslation();
+  useEffect(() => {
+    AOS.init({
+      duration: 2000
+    })
+  })
+
+  return (
+    <div className="our-team-container">
+      <div className="our-team-content">
+        <h1 className="wavy-h1" data-aos="fade-right">
+          Our Team
+        </h1>
+      </div>
+      <div className="team-members-container" data-aos="fade-left">
+        <div className="team-mambers-content">
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Card className="dev-card" >
+                <CardActionArea>
+                  <CardMedia
+                    image={avatar1}
+                    title="Contemplative Reptile"
+                    className="dev-content"
+                  />
+                  <CardContent class="dev-name">
+                    Dr. Sridhar Chimalakonda
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Card className="dev-card" >
+                <CardActionArea>
+                  <CardMedia
+                    image={avatar2}
+                    title="Contemplative Reptile"
+                    className="dev-content"
+                  />
+                  <CardContent class="dev-name">
+                   Shriram Shanbhag
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Card className="dev-card" >
+                <CardActionArea>
+                  <CardMedia
+                    image={avatar3}
+                    title="Contemplative Reptile"
+                    className="dev-content"
+                  />
+                  <CardContent class="dev-name">
+                   Abhishek Gupta
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+              <Card className="dev-card" >
+                <CardActionArea>
+                  <CardMedia
+                    image={avatar4}
+                    title="Contemplative Reptile"
+                    className="dev-content"
+                  />
+                  <CardContent class="dev-name">
+                   Abhay Singh
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
+        </div>
+
+      </div>
+    </div>
+  )
+
+}
 
 const Wavy = () => {
   const { t } = useTranslation();
@@ -66,35 +263,55 @@ const Wavy = () => {
       <div className="contain-wavy">
         <div className="wavy-content">
           <div className="banner-header">
-            <img
-              style={{ borderRadius: "5px" }}
-              className="wavy-book"
+            <ProgressiveImage
+              preview={SafarTiny}
               src={Safar}
-              alt="Safarimage"
+              render={(src, style) =>
+                <img
+                  style={{ borderRadius: "5px" }}
+                  className="wavy-book"
+                  src={src}
+                  alt="Safarimage"
+                />}
             />
-            <h1 className="wavy-h1">{t("tagline")}</h1>
-            <h3 className="wavy-h3">{t("RISHA initiative")}</h3>
-          </div>
-          <div>
-            <Paper elevation={0} className="Featurecard-Container">
-              <Typography
-                variant="h4"
-                component="h4"
-                style={{
-                  fontFamily: "Mulish",
-                  marginTop: "7px",
-                  textAlign: "center",
-                }}
-              >
-                {t("Featured")}
-              </Typography>
+            {/* <Fade in={true} timeout={3000}>
+              <h1 className="wavy-h1">COVID Safar</h1>
+            </Fade> */}
+            {/* <Fade in={true} timeout={5000}> 
+            <hr/>
 
-              <SimpleSlider />
-            </Paper>
+            </Fade> */}
+            <Fade in={true} timeout={5000}>
+
+              <h1 className="wavy-h1">{t("tagline")}</h1>
+
+            </Fade>
+            {/* <h3 className="wavy-h3">{t("RISHA initiative")}</h3> */}
           </div>
+          <Fade in={true} timeout={5000}>
+            <div>
+              <Paper elevation={0} className="Featurecard-Container">
+                <Typography
+                  variant="h4"
+                  component="h4"
+                  style={{
+                    fontFamily: "Mulish",
+                    marginTop: "0px",
+                    textAlign: "center",
+                    background: "#8080801f",
+                    marginBottom: "7px"
+                  }}
+                >
+                  {t("Featured")}
+                </Typography>
+
+                <SimpleSlider />
+              </Paper>
+            </div>
+          </Fade>
         </div>
       </div>
-      <div className="custom-shape-divider-bottom-1620307143">
+      {/* <div className="custom-shape-divider-bottom-1620307143">
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +333,11 @@ const Wavy = () => {
             className="shape-fill"
           ></path>
         </svg>
-      </div>
+      </div> */}
+
+      <WriteSection />
+      <OurTeamSection />
+
 
       <Footer />
     </div>
