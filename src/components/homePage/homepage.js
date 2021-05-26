@@ -67,7 +67,7 @@ const SimpleSlider = () => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions style={{ float: "right" }}>
           <Button size="small" color="primary"
             onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}>
             {t('Read More')}
@@ -259,7 +259,7 @@ const Wavy = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div data-aos="fade-in">
       <div className="contain-wavy">
         <div className="wavy-content">
           <div className="banner-header">
