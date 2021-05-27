@@ -3,13 +3,18 @@ import "./App.css";
 import Navigation from "./components/navigation/navigation";
 import Stories from "./components/stories/stories";
 import HomePage from "./components/homePage/homepage";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Story from "./components/singleStory/mobileStory";
 import Flip from "./components/singleStory/flipPage";
 import useViewport from "./components/utility/useView";
 import "./i18n";
 
+import { env } from "./environment";
+
 function App() {
+  // Set the base url from environment file
+  const base_url = env().mode === "prod" ? "/covidsafar" : "";
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       let distanceY = window.pageYOffset || document.documentElement.scrollTop;
@@ -57,10 +62,29 @@ function App() {
   return (
     <Router className="App">
       <Navigation />
+      <Route exact path="/">
+        <Redirect to={base_url} />
+      </Route>
+      <Route exact path="/stories">
+        <Redirect to={base_url + "/stories"} />
+      </Route>
+      <Route
+        exact
+        path="/story/:id"
+        render={(props) => {
+          return (
+            <Redirect to={"/covidsafar" + "/story/" + props.match.params.id} />
+          );
+        }}
+      ></Route>
       <div className="Appcontainer">
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/stories" component={StoriesM} />
-        <Route exact path="/story/:id" component={IndivisualStory} />
+        <Route exact path={base_url} component={HomePage} />
+        <Route exact path={base_url + "/stories"} component={StoriesM} />
+        <Route
+          exact
+          path={base_url + "/story/:id"}
+          component={IndivisualStory}
+        />
       </div>
     </Router>
   );
