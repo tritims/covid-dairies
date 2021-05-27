@@ -69,7 +69,7 @@ function MobileStory({ width }) {
   useEffect(() => {
     const fetchStory = async () => {
       const res = await axios.get(
-        `https://coviddiaries.herokuapp.com/api/v1/id=${id}`
+        `https://covidsafarv1.herokuapp.com/api/v1/id=${id}`
       );
       setStory(res.data);
       setImage(getImage(res.data.keywords, res.data.content.length));
@@ -157,9 +157,9 @@ function MobileStory({ width }) {
             <article className="mobilearticle" key={i + 10}>
               <div className="mobileImageContainer">
                 <img
-                  className="mobileImage"
-                  alt={"My" + i * 101}
                   src={images.length && images[i] + ".jpg"}
+                  alt={"My" + i * 101}
+                  className="mobileImage"
                 />
               </div>
 
@@ -178,4 +178,4 @@ function MobileStory({ width }) {
   );
 }
 
-export default MobileStory;
+export default React.memo(MobileStory);

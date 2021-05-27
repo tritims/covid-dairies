@@ -1,21 +1,21 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "./language.css";
+import { useLocation } from "react-router-dom";
 
-const LanguageSelector = () => {
+const LanguageSelector = (props) => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
     localStorage.setItem("lang", event.target.value);
   };
+  const usePathname = () => {
+    const location = useLocation();
+    let pname = location.pathname;
+    return pname.includes("story");
+  };
 
-  // return (
-  //   <div onChange={changeLanguage}>
-  //     <input type="radio" value="en" name="language" defaultChecked /> English
-  //     <input type="radio" value="hi" name="language" /> Hindi
-  //   </div>
-  // );
   return (
     <div className="select">
       <select
@@ -23,6 +23,7 @@ const LanguageSelector = () => {
           localStorage.getItem("lang") ? localStorage.getItem("lang") : "en"
         }
         onChange={changeLanguage}
+        disabled={usePathname()}
       >
         <option className="selectOption" value="en" name="language">
           English

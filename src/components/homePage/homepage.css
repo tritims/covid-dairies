@@ -133,7 +133,9 @@
 
 .write-landing-page {
   min-height: 500px;
-  background: brown;
+  /* background: brown;
+   */
+  background: #e47207;
   opacity: 0.8;
   padding: 20px;
   height: 100vh;
@@ -144,23 +146,22 @@
   background: black;
   opacity: 0.8;
   padding: 20px;
+  overflow: hidden;
 }
 
-.our-team-content{
+.our-team-content {
   color: #fff;
 }
 
 .team-members-container {
-
 }
 
 .team-mambers-content {
-
 }
 
 .dev-card {
-  width: 200px;
-  height: 250px;
+  width: 250px;
+  height: 300px;
   margin: auto;
 }
 
@@ -170,8 +171,9 @@
 
 .dev-name {
   text-align: center;
-  font-family: 'Mulish';
+  font-family: "Mulish";
   font-size: 3vh;
+  bottom: 0;
 }
 
 .devteam-landing-page {

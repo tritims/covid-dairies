@@ -10,22 +10,21 @@ import useViewport from "./components/utility/useView";
 import "./i18n";
 
 function App() {
-
-  useEffect(()=>{
-    window.addEventListener("scroll",()  => {
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
       let distanceY = window.pageYOffset || document.documentElement.scrollTop;
       let shrinkOn = 200;
       const headerEl = document.getElementById("toolbar-top");
-  
+
       if (distanceY > shrinkOn) {
-        console.log("Added smaller")
+        console.log("Added smaller");
         headerEl.classList.add("smaller");
       } else {
-        console.log("Removed smaller")
+        console.log("Removed smaller");
         headerEl.classList.remove("smaller");
       }
     });
-  })
+  });
 
   const [sortingDate, setSortingDate] = useState("newest");
   const [coverage, setCoverage] = useState("global");

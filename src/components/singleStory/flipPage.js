@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
 import { getImage } from "./imageGetter";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import Loading from "../stories/storyv2/loading2.jpg";
+import { ProgressiveImage } from "react-progressive-image-loading";
 
 const colorArray = [
   "#FF6633",
@@ -75,11 +77,18 @@ const Page = React.forwardRef((props, ref) => {
         {/* <h2 className="page-header"> {props.number}</h2> */}
         <div className="page-image">
           {props.image && (
-            <img
-              alt="covid-images"
-              className="page-image-img"
+            <ProgressiveImage
+              preview={Loading}
               src={props.image}
-            ></img>
+              render={(src, style) => (
+                <img
+                  alt="covid-images"
+                  style={style}
+                  className="page-image-img"
+                  src={src}
+                />
+              )}
+            />
           )}
         </div>
         <div className="page-text">{props.children}</div>
@@ -100,7 +109,7 @@ const Book = (props) => {
     const fetchStory = async () => {
       try {
         const res = await axios.get(
-          `https://coviddiaries.herokuapp.com/api/v1/id=${id}`
+          `https://covidsafarv1.herokuapp.com/api/v1/id=${id}`
         );
 
         setStory(res.data);
@@ -219,4 +228,4 @@ const Book = (props) => {
   );
 };
 
-export default Book;
+export default React.memo(Book);
