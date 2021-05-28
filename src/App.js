@@ -22,10 +22,8 @@ function App() {
       const headerEl = document.getElementById("toolbar-top");
 
       if (distanceY > shrinkOn) {
-        console.log("Added smaller");
         headerEl.classList.add("smaller");
       } else {
-        console.log("Removed smaller");
         headerEl.classList.remove("smaller");
       }
     });
