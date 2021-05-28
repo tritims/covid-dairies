@@ -1,34 +1,31 @@
 import React, { useEffect } from "react";
 import "./homepage.css";
 import Safar from "./safar.jpg";
-import SafarTiny from './safar_tiny.jpg'
-import { Typography, Paper, Divider } from "@material-ui/core";
+import SafarTiny from "./safar_tiny.jpg";
+import { Typography, Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Fade from "@material-ui/core/Fade";
-import { ProgressiveImage } from 'react-progressive-image-loading'
+import { ProgressiveImage } from "react-progressive-image-loading";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import featured1 from "./featured1.jpg";
+import featured2 from "./featured2.jpg";
+import avatar1 from "./a1.png";
+import avatar2 from "./a2.png";
+import avatar3 from "./a3.png";
+import avatar4 from "./a4.png";
+import Grid from "@material-ui/core/Grid";
 
-
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import featured1 from './featured1.jpg'
-import featured2 from './featured2.jpg'
-import avatar1 from './a1.png'
-import avatar2 from './a2.png'
-import avatar3 from './a3.png'
-import avatar4 from './a4.png'
-import Grid from '@material-ui/core/Grid';
-// import Typography from '@material-ui/core/Typography';
-
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import { useTranslation } from "react-i18next";
 
@@ -48,8 +45,8 @@ const SimpleSlider = () => {
     autoplaySpeed: 4500,
   };
   return (
-    <Slider {...settings} >
-      <Card >
+    <Slider {...settings}>
+      <Card elevation={0}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -59,23 +56,36 @@ const SimpleSlider = () => {
             title="img"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" style={{ fontFamily: "Mulish" }}>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              style={{ fontFamily: "Mulish" }}
+            >
               {t("Featured1 Title")}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p" style={{ fontFamily: "Mulish" }}>
-              {t("Featured1 Content").slice(0, 100) + "..."}
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              style={{ fontFamily: "Mulish" }}
+            >
+              {t("Featured1 Content").slice(0, 220) + "..."}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions style={{ float: "right" }}>
-          <Button size="small" color="primary"
-            onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}>
-            {t('Read More')}
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
+          >
+            {t("Read More")}
           </Button>
         </CardActions>
       </Card>
 
-      <Card >
+      <Card elevation={0}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -85,18 +95,31 @@ const SimpleSlider = () => {
             title="img"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" style={{ fontFamily: "Mulish" }}>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              style={{ fontFamily: "Mulish" }}
+            >
               {t("Featured2 Title")}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p" style={{ fontFamily: "Mulish" }}>
-              {t("Featured2 Content").slice(0, 100) + "..."}
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              style={{ fontFamily: "Mulish" }}
+            >
+              {t("Featured2 Content").slice(0, 220) + "..."}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions style={{ float: "right" }}>
-          <Button size="small" color="primary"
-            onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}>
-            {t('Read More')}
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => history.push("/story/60a4ce7a12891c0feea04228")}
+          >
+            {t("Read More")}
           </Button>
         </CardActions>
       </Card>
@@ -135,23 +158,22 @@ const SimpleSlider = () => {
         </div>
       </div> */}
     </Slider>
-
   );
 };
 
 const WriteSection = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   useEffect(() => {
     AOS.init({
-      duration: 2000
-    })
-  })
+      duration: 2000,
+    });
+  });
   return (
     <div className="write-landing-page">
       <div className="write-landing-content">
         <h2 className="wavy-h1" data-aos="fade-up">
-          {t('Publish your COVID story with Covid Safar')}
+          {t("Publish your COVID story with Covid Safar")}
         </h2>
       </div>
 
@@ -160,112 +182,112 @@ const WriteSection = () => {
         target="_blank"
         rel="noreferrer"
         style={{
-          textDecoration: "none"
+          textDecoration: "none",
         }}
       >
-        <Button style={{
-          margin: "0 auto",
-          height: "80px",
-          display: "flex",
-          fontSize: "3vh",
-          fontFamily: "Mulish",
-          fontweight: "bold",
-        }
-        } variant="contained" color="secondary" data-aos="zoom-in">
-          {t('Write Your Story')}
+        <Button
+          style={{
+            margin: "0 auto",
+            height: "80px",
+            display: "flex",
+            fontSize: "3vh",
+            fontFamily: "Mulish",
+            fontweight: "bold",
+          }}
+          variant="contained"
+          color="secondary"
+          data-aos="zoom-in"
+        >
+          {t("Write Your Story")}
         </Button>
       </a>
-
-
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 const OurTeamSection = () => {
   const { t } = useTranslation();
   useEffect(() => {
     AOS.init({
-      duration: 2000
-    })
-  })
+      duration: 2000,
+    });
+  });
 
   return (
     <div className="our-team-container">
       <div className="our-team-content">
         <h1 className="wavy-h1" data-aos="fade-right">
-          {t('Our Team')}
+          {t("Our Team")}
         </h1>
       </div>
       <div className="team-members-container" data-aos="fade-left">
         <div className="team-mambers-content">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Card className="dev-card" >
+              <Card className="dev-card">
                 <CardActionArea>
                   <CardMedia
                     image={avatar1}
                     title="img"
                     className="dev-content"
                   />
-                  <CardContent class="dev-name">
-                    {t('Dr. Sridhar Chimalakonda')}
+                  <CardContent className="dev-name">
+                    {t("Dr. Sridhar Chimalakonda")}
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Card className="dev-card" >
+              <Card className="dev-card">
                 <CardActionArea>
                   <CardMedia
                     image={avatar2}
                     title="img"
                     className="dev-content"
                   />
-                  <CardContent class="dev-name">
-                    {t('Shriram Shanbhag')}
+                  <CardContent className="dev-name">
+                    {t("Shriram Shanbhag")}
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Card className="dev-card" >
+              <Card className="dev-card">
                 <CardActionArea>
                   <CardMedia
                     image={avatar3}
                     title="img"
                     className="dev-content"
                   />
-                  <CardContent class="dev-name">
-                    {t('Abhishek Gupta')}
+                  <CardContent className="dev-name">
+                    {t("Abhishek Gupta")}
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
 
             <Grid item xs={12} sm={6} md={3} lg={3}>
-              <Card className="dev-card" >
+              <Card className="dev-card">
                 <CardActionArea>
                   <CardMedia
                     image={avatar4}
                     title="img"
                     className="dev-content"
                   />
-                  <CardContent class="dev-name">
-                    {t('Abhay Singh')}
+                  <CardContent className="dev-name">
+                    {t("Abhay Singh")}
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
           </Grid>
         </div>
-
       </div>
     </div>
-  )
-
-}
+  );
+};
 
 const Wavy = () => {
   const { t } = useTranslation();
@@ -287,13 +309,14 @@ const Wavy = () => {
             <ProgressiveImage
               preview={SafarTiny}
               src={Safar}
-              render={(src, style) =>
+              render={(src, style) => (
                 <img
                   style={{ borderRadius: "5px" }}
                   className="wavy-book"
                   src={src}
                   alt="Safarimage"
-                />}
+                />
+              )}
             />
             {/* <Fade in={true} timeout={3000}>
               <h1 className="wavy-h1">COVID Safar</h1>
@@ -319,8 +342,8 @@ const Wavy = () => {
                     fontFamily: "Mulish",
                     marginTop: "0px",
                     textAlign: "center",
-                    background: "#8080801f",
-                    marginBottom: "7px"
+                    // background: "#8080801f",
+                    marginBottom: "7px",
                   }}
                 >
                   {t("Featured")}
@@ -359,10 +382,9 @@ const Wavy = () => {
       {/* <WriteSection />
       <OurTeamSection /> */}
 
-
       <Footer />
     </div>
   );
 };
 
-export default Wavy;
+export default React.memo(Wavy);

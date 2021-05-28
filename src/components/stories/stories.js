@@ -43,7 +43,7 @@ const Stories = ({
     const getData = async () => {
       try {
         const data = await axios.get(
-          `https://coviddiaries.herokuapp.com/api/v1/?language=${lang}&date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
+          `https://covidsafarv1.herokuapp.com/api/v1/?language=${lang}&date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
           {
             headers: {
               "Access-Control-Allow-Origin": "*",
@@ -73,7 +73,12 @@ const Stories = ({
       {storyData.length >= 1 &&
         storyData.map((item, i) => {
           return (
-            <Story width={width} data={item} key={item._id} image={images[i]} />
+            <Story
+              width={width}
+              data={item}
+              key={item._id}
+              image={window.location.origin + images[i] + ".jpg"}
+            />
           );
         })}
     </>
@@ -182,4 +187,4 @@ const Stories = ({
   );
 };
 
-export default Stories;
+export default React.memo(Stories);

@@ -9,28 +9,25 @@ import Flip from "./components/singleStory/flipPage";
 import useViewport from "./components/utility/useView";
 import "./i18n";
 
-import { env } from './environment'
+import { env } from "./environment";
 
 function App() {
-
   // Set the base url from environment file
-  const base_url = env().mode === 'prod' ? '/covidsafar':'';
+  const base_url = env().mode === "prod" ? "/covidsafar" : "";
 
-  useEffect(()=>{
-    window.addEventListener("scroll",()  => {
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
       let distanceY = window.pageYOffset || document.documentElement.scrollTop;
       let shrinkOn = 200;
       const headerEl = document.getElementById("toolbar-top");
-  
+
       if (distanceY > shrinkOn) {
-        console.log("Added smaller")
         headerEl.classList.add("smaller");
       } else {
-        console.log("Removed smaller")
         headerEl.classList.remove("smaller");
       }
     });
-  })
+  });
 
   const [sortingDate, setSortingDate] = useState("newest");
   const [coverage, setCoverage] = useState("global");
@@ -69,14 +66,23 @@ function App() {
       <Route exact path="/stories">
         <Redirect to={base_url + "/stories"} />
       </Route>
-      <Route exact path="/story/:id" render={ props => {
-        return <Redirect to={"/covidsafar" + "/story/" + props.match.params.id} />
-      }}>
-      </Route>
+      <Route
+        exact
+        path="/story/:id"
+        render={(props) => {
+          return (
+            <Redirect to={"/covidsafar" + "/story/" + props.match.params.id} />
+          );
+        }}
+      ></Route>
       <div className="Appcontainer">
         <Route exact path={base_url} component={HomePage} />
         <Route exact path={base_url + "/stories"} component={StoriesM} />
-        <Route exact path={base_url + "/story/:id"} component={IndivisualStory} />
+        <Route
+          exact
+          path={base_url + "/story/:id"}
+          component={IndivisualStory}
+        />
       </div>
     </Router>
   );

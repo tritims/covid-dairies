@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 
 function Toolbar(props) {
   const { t } = useTranslation();
+
   return (
     <Headroom className="toolbar-wrapper">
       <div className="toolbarM" id="toolbar-top">

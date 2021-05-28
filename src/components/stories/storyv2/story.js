@@ -6,7 +6,8 @@ import { useHistory } from "react-router-dom";
 import "./story.css";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
-
+import ProgressiveImage from "react-progressive-image-loading";
+import Loading from "./loading2.jpg";
 var colorArray = [
   "#FF6633",
   "#FF33FF",
@@ -83,15 +84,18 @@ const Story = ({ data, image }) => {
         </Button>
       </div>
       <div className="news-card__card-link"></div>
-      <img
+      <ProgressiveImage
+        preview={Loading}
         src={
           image
-            ? image + ".jpg"
+            ? image
             : "https://cdn.dribbble.com/users/1016207/screenshots/3391077/14.jpg"
         }
-        alt=""
-        className="news-card__image"
+        render={(src, style) => (
+          <img src={src} alt="" className="news-card__image" />
+        )}
       />
+
       <div className="news-card__text-wrapper">
         <div className="news-card__title_wrapper">
           <h2 className="news-card__title">{data && data.title} </h2>
