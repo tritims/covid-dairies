@@ -10,7 +10,8 @@
 }
 
 .is-fullheight {
-  background: radial-gradient(#eea849 45%, darkorchid 90%);
+  /* background: radial-gradient(#eea849 45%, darkorchid 90%); */
+  background: #858E63;
   height: calc(100vh - 8.5vh);
 }
 

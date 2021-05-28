@@ -7,6 +7,8 @@ select {
   box-shadow: none;
   border: 0 !important;
   background: #f50057;
+  /* background: #858E63; */
+
   background-image: none;
 }
 /* Remove IE arrow */

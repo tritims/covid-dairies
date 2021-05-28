@@ -14,7 +14,8 @@
   /* background: linear-gradient(to right, #eea849, darkorchid);
    */
   min-height: 90vh;
-  background: radial-gradient(#eea849 45%, darkorchid 90%);
+  /* background: radial-gradient(#eea849 45%, darkorchid 90%); */
+  background: #858E63;
   margin-bottom: 0;
 }
 
@@ -34,7 +35,8 @@
 
 .MuiPaginationItem-page.Mui-selected {
   color: #fff !important;
-  background: rgb(170, 120, 236) !important;
+  background: #858E63 !important;
+  /* background: rgb(170, 120, 236) !important; */
 }
 
 .singleStoryPara {

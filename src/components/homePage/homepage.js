@@ -271,9 +271,18 @@ const Wavy = () => {
   const { t } = useTranslation();
 
   return (
-    <div data-aos="fade-in">
+    <div>
       <div className="contain-wavy">
         <div className="wavy-content">
+        <Grid container>
+        <Grid item xs={12} className="mainText">
+          {t('Covid Safar')}
+        </Grid>
+        <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>
+        {t("tagline")}
+        </Grid>
+        </Grid>
+          
           <div className="banner-header">
             <ProgressiveImage
               preview={SafarTiny}
@@ -293,14 +302,14 @@ const Wavy = () => {
             <hr/>
 
             </Fade> */}
-            <Fade in={true} timeout={5000}>
+            {/* <Fade in={true} timeout={5000}>
 
               <h1 className="wavy-h1">{t("tagline")}</h1>
 
-            </Fade>
+            </Fade> */}
             {/* <h3 className="wavy-h3">{t("RISHA initiative")}</h3> */}
           </div>
-          <Fade in={true} timeout={5000}>
+          {/* <Fade in={true} timeout={5000}>
             <div>
               <Paper elevation={0} className="Featurecard-Container">
                 <Typography
@@ -320,7 +329,7 @@ const Wavy = () => {
                 <SimpleSlider />
               </Paper>
             </div>
-          </Fade>
+          </Fade> */}
         </div>
       </div>
       {/* <div className="custom-shape-divider-bottom-1620307143">
@@ -347,8 +356,8 @@ const Wavy = () => {
         </svg>
       </div> */}
 
-      <WriteSection />
-      <OurTeamSection />
+      {/* <WriteSection />
+      <OurTeamSection /> */}
 
 
       <Footer />

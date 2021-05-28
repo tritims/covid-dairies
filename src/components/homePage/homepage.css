@@ -13,7 +13,8 @@
   display: block;
   width: calc(300% + 1.3px);
   height: 140px;
-  background: darkorchid;
+  background: #858E63;
+  /* background-image: url('./safar.jpg'); */
   opacity: 0.8;
 }
 
@@ -31,7 +32,7 @@
 
 .contain-wavy {
   min-height: 100vh;
-  background: darkorchid;
+  background: #858E63;
   opacity: 0.8;
   padding: 50px;
   color: #fff;
@@ -63,15 +64,15 @@
 
 .wavy-book {
   max-width: 45vw;
-  height: 46vh;
-  box-shadow: -7px -7px 20px 20px rgba(255, 255, 255, 0.3),
+  height: 60vh;
+  /* box-shadow: -7px -7px 20px 20px rgba(255, 255, 255, 0.3),
     -4px -4px 5px 5px rgba(255, 255, 255, 0.3),
-    7px 7px 20px 20px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+    7px 7px 20px 20px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3); */
 }
 
 .wavy-content {
   display: flex;
-
+  margin-top: 2%;
   justify-content: space-between;
 }
 
@@ -158,6 +159,22 @@
 
 }
 
+.mainText {
+  font-size: 16vh;
+  justify-content: center;
+  align-items: flex-end;
+  display: flex;
+}
+
+.tagline {
+  display: flex;
+  justify-content: center;
+  font-size: 5vh;
+  align-items: start;
+  margin: 0px 50px;
+  /* border-top: 2px solid; */
+}
+
 .dev-card {
   width: 200px;
   height: 250px;
@@ -176,7 +193,7 @@
 
 .devteam-landing-page {
   min-height: 500px;
-  background: darkorchid;
+  background: #858E63;
   opacity: 0.8;
   padding: 20px;
 }
