@@ -170,7 +170,7 @@
 .tagline {
   display: flex;
   justify-content: center;
-  font-size: 5vh;
+  font-size: 4vh;
   align-items: start;
   margin: 0px 50px;
   /* border-top: 2px solid; */
