@@ -97,7 +97,7 @@ const Stories = ({
               }}
             >
               {(page - 1) * 9 + 1} -{" "}
-              {page * 9 < storyCount ? page * 9 : storyCount} stories
+              {page * 9 < storyCount ? page * 9 : storyCount} / {storyCount} {" "}  {t('Stories')}
             </span>
             <div
               style={{
