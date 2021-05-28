@@ -33,7 +33,7 @@
 .contain-wavy {
   min-height: 100vh;
   background: #858E63;
-  opacity: 0.8;
+  /* opacity: 0.8; */
   padding: 50px;
   color: #fff;
   letter-spacing: 0.1rem;
