@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 1.5rem;
+  /* padding: 0 1.5rem; */
 }
 .toolbar_logo {
   padding: 1rem;
@@ -63,12 +63,13 @@
 }
 .toolbar_navigation_items li {
   padding: 0 1.5rem;
+  margin: auto;
 }
 .toolbar_risha_lab {
   position: absolute;
   bottom: 0;
   font-size: 12px;
-  left: 230px;
+  left: 125px;
   color: rgb(129, 109, 109);
   text-decoration: none;
 }
@@ -88,7 +89,7 @@
   color: #fa923f;
 }
 .spacer {
-  flex: 0.92;
+  flex: 1;
 }
 /* @media (max-width: 890px) {
   .toolbar_navigation_items a {
