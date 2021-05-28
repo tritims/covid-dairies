@@ -7,7 +7,7 @@ app.use("/covidsafar/static", express.static(path.join(__dirname, 'build/static'
 app.use("/covidsafar", express.static(path.join(__dirname, 'build'), { maxAge: '30m' }));
 
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
