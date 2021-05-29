@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./homepage.css";
-import Safar from "./safar.jpg";
-import SafarTiny from "./safar_tiny.jpg";
+import Safar from "./read.svg";
+import SafarTiny from "./read_tiny.png";
 import { Typography, Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";

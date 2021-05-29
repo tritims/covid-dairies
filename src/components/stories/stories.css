@@ -15,7 +15,7 @@
    */
   min-height: 90vh;
   /* background: radial-gradient(#eea849 45%, darkorchid 90%); */
-  background: #858E63;
+  background: #9932CC;
   margin-bottom: 0;
 }
 
@@ -35,7 +35,7 @@
 
 .MuiPaginationItem-page.Mui-selected {
   color: #fff !important;
-  background: #858E63 !important;
+  background: #9932CC !important;
   /* background: rgb(170, 120, 236) !important; */
 }
 
