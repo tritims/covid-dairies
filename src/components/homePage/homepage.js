@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./homepage.css";
-import Safar from "./read.svg";
-import SafarTiny from "./read_tiny.png";
+import Safar from "./virus.svg";
+import SafarTiny from "./virus_tiny.png";
 import { Typography, Paper } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
@@ -302,7 +302,16 @@ const Wavy = () => {
         </Grid>
         <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>
         {t("tagline")}
+        <ul className="quotes">
+            <li>
+            Don't forget where you've been. Don't lose sight of where you're going in this journey of life.
+            </li>           
+          </ul>
         </Grid>
+        {/* <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>
+          
+          </ul>
+        </Grid> */}
         </Grid>
           
           <div className="banner-header">
