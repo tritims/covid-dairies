@@ -304,7 +304,12 @@ const Wavy = () => {
         {t("tagline")}
         <ul className="quotes">
             <li>
-            Don't forget where you've been. Don't lose sight of where you're going in this journey of life.
+              {t('quote1')}
+            {/* Don't forget where you've been. */}
+            </li>
+            <li>
+              {t('quote2')}
+            {/* Don't lose site of where you're going in this journey of life. */}
             </li>           
           </ul>
         </Grid>
