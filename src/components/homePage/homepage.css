@@ -71,7 +71,7 @@ font-style: italic;
 margin: 50px auto;
 /* background: #00bfb6; */
 padding: 20px;
-width: max-content;
+max-width: max-content;
 /* padding-bottom: 20px; */
 /* padding-left: 20px; */
 /* text-align: left; */
