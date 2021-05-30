@@ -23,6 +23,8 @@ import avatar2 from "./a2.png";
 import avatar3 from "./a3.png";
 import avatar4 from "./a4.png";
 import Grid from "@material-ui/core/Grid";
+import solidarity from "./helping.png";
+import solidarity_tiny from "./helping_tiny.png";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -308,9 +310,20 @@ const Wavy = () => {
             {/* Don't forget where you've been. */}
             </li>
             <li>
-              {t('quote2')}
+              {t('quote2')} <ProgressiveImage
+              preview={solidarity_tiny}
+              src={solidarity}
+              render={(src, style) => (
+                <img
+                  style={{ borderRadius: "5px" }}
+                  src={src}
+                  alt="solidarity"
+                  className="solidarity"
+                />
+              )}
+            />
             {/* Don't lose site of where you're going in this journey of life. */}
-            </li>           
+            </li>         
           </ul>
         </Grid>
         {/* <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>

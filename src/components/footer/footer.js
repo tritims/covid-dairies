@@ -26,8 +26,11 @@ const Footer = () => {
             rishalab@iittp.ac.in
           </a>{" "}
         </h2>
+        <h2 className="text21">
+          Developed By:   Shriram Shanbhag | Abhishek Gupta | Abhay Singh
+        </h2>
         <h2 className="text21" style={{ marginTop: "10px" }}>
-          Dr. Sridhar Chimalakonda |
+          Under the guidance of Dr. Sridhar Chimalakonda |
           <a
             rel="noreferrer"
             className="footermail"

@@ -8,6 +8,11 @@ import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import ProgressiveImage from "react-progressive-image-loading";
 import Loading from "./loading2.jpg";
+import { env } from "../../../environment";
+
+const base_url = env().mode === "prod" ? "/covidsafar" : "";
+
+
 var colorArray = [
   "#FF6633",
   "#FF33FF",
@@ -73,7 +78,7 @@ const Story = ({ data, image }) => {
         <Button
           onClick={() => {
             navigator.clipboard.writeText(
-              `${window.location.origin}/story/${data._id}`
+              `${window.location.origin}${base_url}/story/${data._id}`
             );
             Swal.fire("Link copied succesfully", "", "success");
           }}
