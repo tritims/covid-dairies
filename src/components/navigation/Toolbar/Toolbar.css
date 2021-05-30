@@ -115,4 +115,7 @@
   .toolbar_logo {
     margin-left: 0;
   }
+  .toolbar_logo_image_left {
+    display: none;
+  }
 }

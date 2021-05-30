@@ -21,10 +21,10 @@ function Toolbar(props) {
             <Hamburger click={props.SideToggle} />
           </div>
           <div className="toolbar_logo_align">
-            {/* <a href="https://www.iittp.ac.in/" rel="noreferrer" target="_blank">
-              <img className="toolbar_logo_image" src={IIT} alt="iitt_logo" />
+            <a href="https://www.iittp.ac.in/" rel="noreferrer" target="_blank">
+              <img className="toolbar_logo_image_left toolbar_logo_image" src={IIT} alt="iitt_logo" />
             </a>{" "}
-            <Divider orientation="vertical" flexItem />{" "} */}
+            <Divider orientation="vertical" flexItem />{" "}
             <img className="toolbar_logo_image" src={RISHA} alt="risha_logo" />
           </div>
           <Link to="/" style={{ textDecoration: "none" }}>
