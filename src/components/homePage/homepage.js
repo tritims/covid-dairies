@@ -306,22 +306,11 @@ const Wavy = () => {
         {t("tagline")}
         <ul className="quotes">
             <li>
-              {t('quote1')}<ProgressiveImage
-              preview={solidarity_tiny}
-              src={solidarity}
-              render={(src, style) => (
-                <img
-                  style={{ borderRadius: "5px" }}
-                  src={src}
-                  alt="solidarity"
-                  className="solidarity"
-                />
-              )}
-            />
+              {t('quote1')}!
             {/* Don't forget where you've been. */}
             </li>
             <li>
-              {t('quote2')} <ProgressiveImage
+              {t('quote2')}!! <ProgressiveImage
               preview={solidarity_tiny}
               src={solidarity}
               render={(src, style) => (
