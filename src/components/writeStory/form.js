@@ -5,6 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import './form.css'
+import { useTranslation } from "react-i18next";
+
 
 var fields = {
   name: "",
@@ -109,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Form() {
   const classes = useStyles();
-
+  const { t } = useTranslation();
   const [name, setName] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [age, setAge] = React.useState("");
@@ -200,8 +203,8 @@ export default function Form() {
   };
 
   return (
-    <Grid container spacing={5}>
-      <Grid item>
+    <Grid container className="formContainer" xs={9} md={9} lg={9}>
+      <Grid item xs={12} className="formSection">
         <div>
           <p>
             Over the past weeks, maybe months, you have been taking action and
@@ -219,17 +222,17 @@ export default function Form() {
           </p>
         </div>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom>
-            Your Details
+          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+            {t("Your Details")}
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
                 id="name"
                 name="name"
-                label="Name(optional)"
+                label={t("Name")}
                 value={name}
                 onChange={handleNameChange}
                 variant="outlined"
@@ -242,7 +245,7 @@ export default function Form() {
                 required
                 id="age"
                 name="age"
-                label="Age"
+                label={t("Age")}
                 type="number"
                 value={age}
                 onChange={handleAgeChange}
@@ -256,7 +259,7 @@ export default function Form() {
                 required
                 id="city"
                 name="city"
-                label="City"
+                label={t("Location")}
                 value={city}
                 onChange={handleCityChange}
                 variant="outlined"
@@ -270,7 +273,7 @@ export default function Form() {
                 id="gender"
                 name="gender"
                 select
-                label="Gender"
+                label={t("Gender")}
                 value={gender}
                 onChange={handleGenderChange}
                 variant="outlined"
@@ -279,7 +282,7 @@ export default function Form() {
               >
                 {genders.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
-                    {option.label}
+                    {t(option.label)}
                   </MenuItem>
                 ))}
               </TextField>
@@ -287,10 +290,10 @@ export default function Form() {
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom>
-            Type Of Experience
+          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+            {t("Type Of Experience")}
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -306,7 +309,7 @@ export default function Form() {
               >
                 {experienceTypes.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
-                    {option.label}
+                    {t(option.label)}
                   </MenuItem>
                 ))}
               </TextField>
@@ -319,7 +322,7 @@ export default function Form() {
                     <TextField
                       id="symptoms"
                       name="symptoms"
-                      label="Symptoms"
+                      label={t("Symptoms")}
                       value={symptoms}
                       onChange={handleSymptomsChange}
                       multiline
@@ -332,7 +335,7 @@ export default function Form() {
                     <TextField
                       id="duration"
                       name="duration"
-                      label="Duration"
+                      label={t("Duration")}
                       value={duration}
                       onChange={handleDurationChange}
                       variant="outlined"
@@ -344,7 +347,7 @@ export default function Form() {
                     <TextField
                       id="isCured"
                       select
-                      label="Patient cured?"
+                      label={t("CuredStatus")}
                       value={isCured}
                       onChange={handleIsCuredChange}
                       variant="outlined"
@@ -353,7 +356,7 @@ export default function Form() {
                     >
                       {isCuredOptions.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
-                          {option.label}
+                          {t(option.label)}
                         </MenuItem>
                       ))}
                     </TextField>
@@ -364,10 +367,10 @@ export default function Form() {
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom>
-            Share your experience
+          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+            {t("Share your experience")}
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -375,7 +378,7 @@ export default function Form() {
                 required
                 id="title"
                 name="title"
-                label="Title"
+                label={t("Title")}
                 value={title}
                 onChange={handleTitleChange}
                 multiline
@@ -389,7 +392,7 @@ export default function Form() {
                 required
                 id="content"
                 name="content"
-                placeholder="Write your story here*"
+                placeholder={t("Write your story here")}
                 multiline
                 value={content}
                 onChange={handleContentChange}
@@ -397,15 +400,16 @@ export default function Form() {
                 variant="outlined"
                 color="secondary"
                 fullWidth
+                style={{paddingTop: "2px !important"}} //to avoid alphabets getting chopped
               />
             </Grid>
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} >
         <React.Fragment>
-          <Typography variant="h6" gutterBottom>
-            Something you'll always remember about this pandemic:
+          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+            {t("Something you'll always remember about this pandemic")}:
           </Typography>
           <Grid item xs={12}>
             <TextField
@@ -420,9 +424,9 @@ export default function Form() {
               color="secondary"
               fullWidth
             />
-          </Grid>
-          <Typography variant="h6" gutterBottom>
-            Something you'll want to forget about this pandemic:
+          </Grid > 
+          <Typography variant="h6" gutterBottom className="theme-color sectionHeader" style={{marginTop: "50px"}}>
+            {t("Something you'll want to forget about this pandemic")}:
           </Typography>
           <Grid item xs={12}>
             <TextField
@@ -440,7 +444,7 @@ export default function Form() {
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid item>
+      <Grid item xs={12} style={{marginBottom: "25px"}}>
         <React.Fragment>
           <div className={classes.buttons}>
             <Button

@@ -3,6 +3,7 @@ import "./App.css";
 import Navigation from "./components/navigation/navigation";
 import Stories from "./components/stories/stories";
 import HomePage from "./components/homePage/homepage";
+import COVIDExperiences from "./components/writeStory/form"
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Story from "./components/singleStory/mobileStory";
 import Flip from "./components/singleStory/flipPage";
@@ -66,6 +67,9 @@ function App() {
       <Route exact path="/stories">
         <Redirect to={base_url + "/stories"} />
       </Route>
+      <Route exact path="/write">
+        <Redirect to={base_url + "/write"} />
+      </Route>
       <Route
         exact
         path="/story/:id"
@@ -78,6 +82,7 @@ function App() {
       <div className="Appcontainer">
         <Route exact path={base_url} component={HomePage} />
         <Route exact path={base_url + "/stories"} component={StoriesM} />
+        <Route exact path={base_url + "/write"} component={COVIDExperiences} />
         <Route
           exact
           path={base_url + "/story/:id"}

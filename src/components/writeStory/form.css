@@ -1,0 +1,18 @@
+.formContainer {
+    margin: auto;
+    width: 80%;
+}
+
+.theme-color {
+    background: #280937;
+}
+
+.sectionHeader {
+    color: white;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.formSection {
+    margin-bottom: 50px !important;
+}
