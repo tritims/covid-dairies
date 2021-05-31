@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import './form.css'
 import { useTranslation } from "react-i18next";
+import Chip from '@material-ui/core/Chip';
 
 
 
@@ -25,6 +26,22 @@ var fields = {
   question2: "",
 };
 
+// {
+//   name: "xxx",
+//   age: "25", 
+//   city: "xxxx",
+//   gender: "M",
+//   experienceType: "Covid Patient",
+//   symptoms: "cold, cough, fever",
+//   duration: "1 month",
+//   isCured: "Yes/No",
+//   title: "",
+//   content: "",
+//   thigToRemember: "xxx",
+//   thingToForget: "vvdfdf",
+//   keywords: ["sdfsdf", "dfsdfd"]
+// }
+
 const genders = [
   {
     value: "Male",
@@ -39,6 +56,23 @@ const genders = [
     label: "Other",
   },
 ];
+
+var kwBase = {
+  "positive": false,
+  "hospital": false,
+  "fever": false,
+  "test": false,
+  "quarantine": false,
+  "isolation": false,
+  "vaccination": false,
+  "cough": false,
+  "recovery": false,
+  "smell": false,
+  "infection": false,
+  "paracetamol": false,
+  "body ache": false
+};
+
 
 const experienceTypes = [
   {
@@ -114,6 +148,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Form() {
   const classes = useStyles();
   const { t } = useTranslation();
+  // const [keywords, setKeywords] = useState([])
   const [name, setName] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [age, setAge] = React.useState("");
@@ -126,6 +161,8 @@ export default function Form() {
   const [content, setContent] = React.useState("");
   const [question1, setQuestion1] = React.useState("");
   const [question2, setQuestion2] = React.useState("");
+  const [keywords, setKeywords] = React.useState(kwBase);
+  
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -189,6 +226,14 @@ export default function Form() {
     fields.question2 = event.target.value;
   };
 
+  const chipClicked = (event) => {
+    setKeywords({
+      event: !kwBase[event]
+    })
+    kwBase[event] = !kwBase[event]
+    // console.log(kwBase)
+  }
+
   const onSubmitHandler = () => {
     if (
       fields.age !== "" &&
@@ -199,8 +244,10 @@ export default function Form() {
     ) {
       console.log(fields);
     } else {
-      alert("Please fill all the required fields (fields with * symbol)");
+      alert(t("FillAllMandatory"));
     }
+
+    /**Submit to backend with POST/PUT */
   };
 
   return (
@@ -256,6 +303,7 @@ export default function Form() {
                 variant="outlined"
                 color="secondary"
                 fullWidth
+                className="ageField" // Hide increment button
               />
             </Grid>
             <Grid item xs={12}>
@@ -320,7 +368,7 @@ export default function Form() {
             </Grid>
             <Grid item xs={12}>
               {experienceType === "Covid patient" ||
-              experienceType === "Family member/friend of Covid patient" ? (
+                experienceType === "Family member/friend of Covid patient" ? (
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <TextField
@@ -404,13 +452,13 @@ export default function Form() {
                 variant="outlined"
                 color="secondary"
                 fullWidth
-                style={{paddingTop: "2px !important"}} //to avoid alphabets getting chopped
+                style={{ paddingTop: "2px !important" }} //to avoid alphabets getting chopped
               />
             </Grid>
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid item xs={12} >
+      <Grid item xs={12} className="formSection">
         <React.Fragment>
           <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
             {t("Something you'll always remember about this pandemic")}:
@@ -428,8 +476,8 @@ export default function Form() {
               color="secondary"
               fullWidth
             />
-          </Grid > 
-          <Typography variant="h6" gutterBottom className="theme-color sectionHeader" style={{marginTop: "50px"}}>
+          </Grid >
+          <Typography variant="h6" gutterBottom className="theme-color sectionHeader" style={{ marginTop: "50px" }}>
             {t("Something you'll want to forget about this pandemic")}:
           </Typography>
           <Grid item xs={12}>
@@ -448,13 +496,40 @@ export default function Form() {
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid item xs={12} style={{marginBottom: "25px"}}>
+      <Grid xs={12}>
+        <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+            {t("Select Keywords associated with your story")}:
+        </Typography>
+        <React.Fragment>
+          <ul style={{padding: "0px"}}>
+            {
+              Object.keys(kwBase).map(
+                kw => {
+                  return (
+                    <li style={{display:"inline", margin: "2px"}}>
+                      <Chip
+                      label={t(kw)}
+                      onClick={() => chipClicked(kw)}
+                      className={{
+                        "active": kwBase[kw],
+                        "chip": true
+                      }}
+                      />
+                    </li>
+                  )
+                }
+              )
+            }
+          </ul>
+        </React.Fragment>
+      </Grid>
+      <Grid item xs={12} style={{ marginBottom: "25px" }}>
         <React.Fragment>
           <div className={classes.buttons}>
             <Button
               variant="contained"
               color="primary"
-              style={{background: "#280937"}}
+              style={{ background: "#280937" }}
               className={classes.button}
               onClick={onSubmitHandler}
             >
