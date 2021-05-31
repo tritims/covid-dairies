@@ -306,7 +306,7 @@ const Wavy = () => {
         {t("tagline")}
         <ul className="quotes">
             <li>
-              {t('quote1')}!
+              {t('quote1')}
             {/* Don't forget where you've been. */}
             </li>
             <li>
