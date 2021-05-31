@@ -9,6 +9,7 @@ import './form.css'
 import { useTranslation } from "react-i18next";
 
 
+
 var fields = {
   name: "",
   age: "",
@@ -207,18 +208,21 @@ export default function Form() {
       <Grid item xs={12} className="formSection">
         <div>
           <p>
-            Over the past weeks, maybe months, you have been taking action and
+            {t("IntroToForm")}
+            {/* Over the past weeks, maybe months, you have been taking action and
             developing many creative ideas to face these challenging times,
             whether by helping your community, finding innovative learning ways,
             keeping a positive spirit, taking care of your relatives and loved
-            ones, and much much more.
+            ones, and much much more. */}
           </p>
           <p>
-            Let the world hear about YOUR own experience of this COVID-19
-            pandemic. Share your experience by filling this form.
+            {t("LetTheWorldKnow")}
+            {/* Let the world hear about YOUR own experience of this COVID-19
+            pandemic. Share your experience by filling this form. */}
           </p>
           <p>
-            Please <b>avoid</b> using abusive words. <b>Don't</b> spread hate.
+            {t("NoAbusiveLanguage")}
+            {/* Please <b>avoid</b> using abusive words. <b>Don't</b> spread hate. */}
           </p>
         </div>
       </Grid>
@@ -450,10 +454,11 @@ export default function Form() {
             <Button
               variant="contained"
               color="primary"
+              style={{background: "#280937"}}
               className={classes.button}
               onClick={onSubmitHandler}
             >
-              Submit
+              {t("Submit")}
             </Button>
           </div>
         </React.Fragment>
