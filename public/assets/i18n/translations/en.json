@@ -60,5 +60,19 @@
   "LetTheWorldKnow": "Let the world hear about YOUR own experience of this COVID-19 pandemic. Share your experience by filling this form.",
   "NoAbusiveLanguage": "Please avoid using abusive words. Don't spread hate.",
   "Submit": "Submit",
-  "FillAllMandatory":"Please fill all the required fields (fields with * symbol)"
+  "FillAllMandatory":"Please fill all the required fields (fields with * symbol)",
+  "Select Keywords associated with your story": "Select Keywords associated with your story",
+  "positive": "positive",
+  "hospital": "hospital",
+  "fever": "fever",
+  "test": "test",
+  "quarantine": "quarantine",
+  "isolation": "isolation",
+  "vaccination": "vaccination",
+  "cough": "cough",
+  "recovery": "recovery",
+  "smell": "smell",
+  "infection": "infection",
+  "paracetamol": "paracetamol",
+  "body ache": "body ache"
 }

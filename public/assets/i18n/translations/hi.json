@@ -61,5 +61,19 @@
   "LetTheWorldKnow": "दुनिया को इस COVID-19 महामारी के अपने स्वयं के अनुभव के बारे में सुनने दें। इस फॉर्म को भरकर अपना अनुभव साझा करें।",
   "NoAbusiveLanguage": "कृपया अपशब्दों के प्रयोग से बचें। कृपया नफरत न फैलाएं।",
   "Submit": "प्रस्तुत",
-  "FillAllMandatory": "कृपया सभी आवश्यक फ़ील्ड भरें (* चिह्न वाले फ़ील्ड)"
+  "FillAllMandatory": "कृपया सभी आवश्यक फ़ील्ड भरें (* चिह्न वाले फ़ील्ड)",
+  "Select Keywords associated with your story": "अपनी कहानी से जुड़े कीवर्ड चुनें",
+  "positive": "पॉजिटिव",
+  "hospital": "अस्पताल",
+  "fever": "बुखार",
+  "test": "जाँच",
+  "quarantine": "क्वारंटाइन",
+  "isolation": "अलगाव",
+  "vaccination": "टीका",
+  "cough": "खांसी",
+  "recovery": "स्वास्थ्य लाभ",
+  "smell": "गंध",
+  "infection": "संक्रमण",
+  "paracetamol": "पैरासिटामोल",
+  "body ache": "शरीर में दर्द"
 }
