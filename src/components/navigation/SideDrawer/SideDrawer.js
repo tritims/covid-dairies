@@ -4,11 +4,15 @@ import "./SideDrawer.css";
 import Language from "../../../LanguageSelector";
 import { useTranslation } from "react-i18next";
 import Logo from "../safar.png";
+import { useAuth0 } from "@auth0/auth0-react";
+import { CircularProgress } from "@material-ui/core";
 
 function SideDrawer(props) {
   let side = "side-drawer";
   if (props.show) side = "side-drawer open";
   const { t } = useTranslation();
+
+  const { isAuthenticated, loginWithRedirect, logout, isLoading } = useAuth0();
 
   return (
     <nav className={side}>
@@ -42,6 +46,39 @@ function SideDrawer(props) {
               {t("Write")}
             </a>
           </li>
+          {!isLoading ? (
+            isAuthenticated ? (
+              <>
+                {" "}
+                <li>
+                  <Link to="/dashboard">{t("Dashboard")}</Link>
+                </li>{" "}
+                <li
+                  onClick={() =>
+                    logout({
+                      returnTo: window.location.origin + "/covidsafar",
+                    })
+                  }
+                >
+                  {" "}
+                  <Link to="#">
+                    <i
+                      className="fas fa-sign-out-alt"
+                      style={{ color: "#f50057" }}
+                    ></i>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li onClick={() => loginWithRedirect()}>
+                <Link to="#">{t("Login")}</Link>
+              </li>
+            )
+          ) : (
+            <li>
+              <CircularProgress color="secondary" size={20} />
+            </li>
+          )}
           <li>
             <Language />
           </li>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Headroom from "react-headroom";
 import RISHA from "./risha.png";
 import IIT from "./iittp.png";
-import { Divider } from "@material-ui/core";
+import { CircularProgress, Divider } from "@material-ui/core";
 import Logo from "../safar.png";
 import Language from "../../../LanguageSelector";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 function Toolbar(props) {
   const { t } = useTranslation();
 
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, isLoading } = useAuth0();
 
   return (
     <Headroom className="toolbar-wrapper">
@@ -70,15 +70,40 @@ function Toolbar(props) {
                   {t("Write")}
                 </a>
               </li>
-              {isAuthenticated ? (
-                <li>
-                  <Link to="/dashboard">{t("Dashboard")}</Link>
-                </li>
+              {!isLoading ? (
+                isAuthenticated ? (
+                  <>
+                    {" "}
+                    <li>
+                      <Link to="/dashboard">{t("Dashboard")}</Link>
+                    </li>{" "}
+                    <li
+                      onClick={() =>
+                        logout({
+                          returnTo: window.location.origin + "/covidsafar",
+                        })
+                      }
+                    >
+                      {" "}
+                      <Link to="#">
+                        <i
+                          className="fas fa-sign-out-alt"
+                          style={{ color: "#f50057" }}
+                        ></i>
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <li onClick={() => loginWithRedirect()}>
+                    <Link to="#">{t("Login")}</Link>
+                  </li>
+                )
               ) : (
-                <li onClick={() => loginWithRedirect()}>
-                  <Link to="#">{t("Login")}</Link>
+                <li>
+                  <CircularProgress color="secondary" size={20} />
                 </li>
               )}
+
               <li>
                 <Language />
               </li>

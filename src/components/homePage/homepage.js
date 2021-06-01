@@ -294,15 +294,15 @@ const OurTeamSection = () => {
 
 const Wavy = () => {
   const { t } = useTranslation();
-  const { getAccessTokenSilently } = useAuth0();
+  // const { getAccessTokenSilently } = useAuth0();
 
-  useEffect(() => {
-    const fetch = async () => {
-      let token = await getAccessTokenSilently();
-      console.log(token);
-    };
-    fetch();
-  }, []);
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     let token = await getAccessTokenSilently();
+  //     console.log(token);
+  //   };
+  //   fetch();
+  // }, []);
 
   return (
     <div>
