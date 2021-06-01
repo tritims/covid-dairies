@@ -25,6 +25,7 @@ import avatar4 from "./a4.png";
 import Grid from "@material-ui/core/Grid";
 import solidarity from "./helping.png";
 import solidarity_tiny from "./helping_tiny.png";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -293,45 +294,59 @@ const OurTeamSection = () => {
 
 const Wavy = () => {
   const { t } = useTranslation();
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    const fetch = async () => {
+      let token = await getAccessTokenSilently();
+      console.log(token);
+    };
+    fetch();
+  }, []);
 
   return (
     <div>
       <div className="contain-wavy">
         <div className="wavy-content">
-        <Grid container>
-        <Grid item xs={12} className="mainText">
-          {t('Covid Safar')}
-        </Grid>
-        <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>
-        {t("tagline")}
-        <ul className="quotes">
-            <li>
-              {t('quote1')}!
-            {/* Don't forget where you've been. */}
-            </li>
-            <li>
-              {t('quote2')}!! <ProgressiveImage
-              preview={solidarity_tiny}
-              src={solidarity}
-              render={(src, style) => (
-                <img
-                  style={{ borderRadius: "5px" }}
-                  src={src}
-                  alt="solidarity"
-                  className="solidarity"
-                />
-              )}
-            />
-            {/* Don't lose site of where you're going in this journey of life. */}
-            </li>         
-          </ul>
-        </Grid>
-        {/* <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>
+          <Grid container>
+            <Grid item xs={12} className="mainText">
+              {t("Covid Safar")}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              className="tagline"
+              style={{ textAlign: "center" }}
+            >
+              {t("tagline")}
+              <ul className="quotes">
+                <li>
+                  {t("quote1")}!{/* Don't forget where you've been. */}
+                </li>
+                <li>
+                  {t("quote2")}!!{" "}
+                  <ProgressiveImage
+                    preview={solidarity_tiny}
+                    src={solidarity}
+                    render={(src, style) => (
+                      <img
+                        style={{ borderRadius: "5px" }}
+                        src={src}
+                        alt="solidarity"
+                        className="solidarity"
+                      />
+                    )}
+                  />
+                  {/* Don't lose site of where you're going in this journey of life. */}
+                </li>
+              </ul>
+            </Grid>
+            {/* <Grid item xs={12} className="tagline" style={{textAlign: "center"}}>
           
           </ul>
         </Grid> */}
-        </Grid>
-          
+          </Grid>
+
           <div className="banner-header">
             <ProgressiveImage
               preview={SafarTiny}

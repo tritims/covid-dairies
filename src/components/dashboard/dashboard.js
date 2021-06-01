@@ -1,129 +1,115 @@
 import React, { useState, useEffect } from "react";
 import "./dash.css";
-import Login from "../googleLogin/login";
-import Logout from "../googleLogin/logout";
+// import Login from "../googleLogin/login";
+// import Logout from "../googleLogin/logout";
 import Spinner from "../loading/loading";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-function Dash({ isAuth, loading, setAuth, setLoading }) {
-  const [profile, setProfile] = useState();
-  const [mount, setMount] = useState(true);
+function Dash() {
+  const [stories, setStories] = useState();
+  // const [mount, setMount] = useState(true);
+  const { logout, user, getAccessTokenSilently } = useAuth0();
+  const { name, picture } = user;
 
   useEffect(() => {
-    
     const fetchProfile = async () => {
-      const token = localStorage.getItem("token");
-      const res = await axios.post(
-        "http://localhost:5000/private/dashboard",
-        JSON.stringify({ token: token }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
-      const result = res.data;
-      let tempProfile;
-      if (result.success) {
-        tempProfile = {
-          name: result.name,
-          img: result.img,
-          stories: result.stories,
-        };
-        setProfile(tempProfile);
+      try {
+        let token = await getAccessTokenSilently();
+        const res = await axios.get(
+          "http://localhost:5000/api/v1/private/dashboard",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const result = res.data;
+        setStories(result.stories);
+      } catch (error) {
+        console.error(error.message);
       }
     };
-    isAuth && fetchProfile();
-    return () => {
-      setMount(false); // Additional loading for fetching profile
-    };
-  }, [isAuth]);
+    fetchProfile();
+    // return () => {
+    //   setMount(false); // Additional loading for fetching profile
+    // };
+  }, []);
   return (
     <>
-      {!loading ? (
-        isAuth ? (
-          <div className="main-content">
-            <header className="header-wrapper">
-              <h2>
-                <label htmlFor="nav-toggle"></label>
-                Dashboard
-              </h2>
+      <div className="main-content">
+        <header className="header-wrapper">
+          <h2>
+            <label htmlFor="nav-toggle"></label>
+            Dashboard
+          </h2>
 
-              <div className="user-wrapper">
-                {" "}
-                <img
-                  src={profile && profile.img}
-                  width="40px"
-                  height="40px"
-                  alt="profile-img"
-                  className="profile-img"
-                />
-                <div className="google-user">
-                  <h4>{profile && profile.name}</h4>
-                </div>
-              </div>
-              <div>
-                <Logout setAuth={setAuth} setLoading={setLoading} />
-              </div>
-            </header>
+          <div className="user-wrapper">
+            {" "}
+            <img
+              src={picture && picture}
+              width="40px"
+              height="40px"
+              alt="profile-img"
+              className="profile-img"
+            />
+            <div className="google-user">
+              <h4>{name && name}</h4>
+            </div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                logout({ returnTo: window.location.origin + "/covidsafar" })
+              }
+            >
+              Logout
+            </span>
+          </div>
+        </header>
 
-            <main>
-              <h1>Your Stories</h1>
-              <div className="cards">
-                {profile &&
-                  profile.stories.map((story) => (
-                    <div className="card-single" key={story.title}>
-                      <div>
-                        <h3>{story && story.title}</h3>
-                        <h4>Created : {story && story.dateTime}</h4>
-                        <div className="dashboardIconContainer">
-                          <span className="dashboardIcon">
-                            <Link
-                              style={{
-                                textDecoration: "none",
-                                color: "green",
-                              }}
-                              to={`/edit/${story._id.$oid}`}
-                            >
-                              {" "}
-                              <i className="fas fa-edit"></i>
-                            </Link>
-                          </span>
-                          {"  "}
-                          <span className="dashboardIcon">
-                            <Link
-                              style={{ textDecoration: "none", color: "green" }}
-                              to={`/story/${story._id.$oid}`}
-                            >
-                              {" "}
-                              <i className="fas fa-book-reader"></i>
-                            </Link>
-                          </span>
-                        </div>
-                      </div>
+        <main>
+          <h1>Your Stories</h1>
+          <div className="cards">
+            {stories &&
+              stories.map((story, i) => (
+                <div className="card-single" key={story.title + i}>
+                  <div>
+                    <h3>{story.title && story.title}</h3>
+                    <h4>Created : {story.dateTime && story.dateTime}</h4>
+                    <div className="dashboardIconContainer">
+                      <span className="dashboardIcon">
+                        <Link
+                          style={{
+                            textDecoration: "none",
+                            color: "green",
+                          }}
+                          to={`/edit/${story._id}`}
+                        >
+                          {" "}
+                          <i className="fas fa-edit"></i>
+                        </Link>
+                      </span>
+                      {"  "}
+                      <span className="dashboardIcon">
+                        <Link
+                          style={{ textDecoration: "none", color: "green" }}
+                          to={`/story/${story._id}`}
+                        >
+                          {" "}
+                          <i className="fas fa-book-reader"></i>
+                        </Link>
+                      </span>
                     </div>
-                  ))}
-              </div>
-            </main>
+                  </div>
+                </div>
+              ))}
           </div>
-        ) : (
-          <div
-            style={{
-              width: "100%",
-              height: "90vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Login setAuth={setAuth} setLoading={setLoading} />
-          </div>
-        )
-      ) : (
-        <Spinner />
-      )}
+        </main>
+      </div>
     </>
   );
 }

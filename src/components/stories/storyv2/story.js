@@ -12,7 +12,6 @@ import { env } from "../../../environment";
 
 const base_url = env().mode === "prod" ? "/covidsafar" : "";
 
-
 var colorArray = [
   "#FF6633",
   "#FF33FF",
@@ -123,7 +122,7 @@ const Story = ({ data, image }) => {
                 ))}
               </span>
             )}
-            {data &&
+            {data.emotions &&
               data.emotions.map((item) => (
                 <span key={item} style={{ marginLeft: "5px", opacity: "0.8" }}>
                   <Emoji type={item} size="xs" />
