@@ -25,6 +25,7 @@ import avatar4 from "./a4.png";
 import Grid from "@material-ui/core/Grid";
 import solidarity from "./helping.png";
 import solidarity_tiny from "./helping_tiny.png";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -293,6 +294,15 @@ const OurTeamSection = () => {
 
 const Wavy = () => {
   const { t } = useTranslation();
+  const { getAccessTokenSilently } = useAuth0();
+
+  useEffect(() => {
+    const fetch = async () => {
+      let token = await getAccessTokenSilently();
+      console.log(token);
+    };
+    fetch();
+  }, []);
 
   return (
     <div>
@@ -330,8 +340,8 @@ const Wavy = () => {
           
           </ul>
         </Grid> */}
-        </Grid>
-          
+          </Grid>
+
           <div className="banner-header">
             <ProgressiveImage
               preview={SafarTiny}

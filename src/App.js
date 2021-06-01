@@ -9,8 +9,11 @@ import Story from "./components/singleStory/mobileStory";
 import Flip from "./components/singleStory/flipPage";
 import useViewport from "./components/utility/useView";
 import "./i18n";
-
+import AuthWithHistory from "./components/authProvider/authProviderWithHistory";
 import { env } from "./environment";
+import Login from "./components/auth0/login";
+import Dashboard from "./components/dashboard/dashboard";
+import ProtectedRoute from "./components/authProvider/protectedRoute";
 
 function App() {
   // Set the base url from environment file
@@ -58,37 +61,50 @@ function App() {
       setSearchString={setSearchString}
     />
   );
+
   return (
     <Router className="App">
-      <Navigation />
-      <Route exact path="/">
-        <Redirect to={base_url} />
-      </Route>
-      <Route exact path="/stories">
-        <Redirect to={base_url + "/stories"} />
-      </Route>
-      <Route exact path="/write">
-        <Redirect to={base_url + "/write"} />
-      </Route>
-      <Route
-        exact
-        path="/story/:id"
-        render={(props) => {
-          return (
-            <Redirect to={"/covidsafar" + "/story/" + props.match.params.id} />
-          );
-        }}
-      ></Route>
-      <div className="Appcontainer">
-        <Route exact path={base_url} component={HomePage} />
-        <Route exact path={base_url + "/stories"} component={StoriesM} />
-        <Route exact path={base_url + "/write"} component={COVIDExperiences} />
+      <AuthWithHistory>
+        <Navigation />
+        <Route exact path="/">
+          <Redirect to={base_url} />
+        </Route>
+        <Route exact path="/stories">
+          <Redirect to={base_url + "/stories"} />
+        </Route>
+        <Route exact path="/login">
+          <Redirect to={base_url + "/login"} />
+        </Route>
+        <Route exact path="/dashboard">
+          <Redirect to={base_url + "/dashboard"} />
+        </Route>
         <Route
           exact
-          path={base_url + "/story/:id"}
-          component={IndivisualStory}
-        />
-      </div>
+          path="/story/:id"
+          render={(props) => {
+            return (
+              <Redirect
+                to={"/covidsafar" + "/story/" + props.match.params.id}
+              />
+            );
+          }}
+        ></Route>
+        <div className="Appcontainer">
+          <Route exact path={base_url} component={HomePage} />
+          <Route exact path={base_url + "/stories"} component={StoriesM} />
+          <Route
+            exact
+            path={base_url + "/story/:id"}
+            component={IndivisualStory}
+          />{" "}
+          <Route exact path={base_url + "/login"} component={Login} />{" "}
+          <ProtectedRoute
+            exact
+            path={base_url + "/dashboard"}
+            component={Dashboard}
+          />
+        </div>
+      </AuthWithHistory>
     </Router>
   );
 }

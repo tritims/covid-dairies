@@ -9,9 +9,12 @@ import { Divider } from "@material-ui/core";
 import Logo from "../safar.png";
 import Language from "../../../LanguageSelector";
 import { useTranslation } from "react-i18next";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Toolbar(props) {
   const { t } = useTranslation();
+
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
     <Headroom className="toolbar-wrapper">
@@ -22,9 +25,17 @@ function Toolbar(props) {
           </div>
           <div className="toolbar_logo_align">
             <a href="https://www.iittp.ac.in/" rel="noreferrer" target="_blank">
-              <img className="toolbar_logo_image_left toolbar_logo_image" src={IIT} alt="iitt_logo" />
+              <img
+                className="toolbar_logo_image_left toolbar_logo_image"
+                src={IIT}
+                alt="iitt_logo"
+              />
             </a>{" "}
-            <Divider orientation="vertical toolbar_logo_image_left" flexItem />{" "}
+            <Divider
+              orientation="vertical"
+              className="toolbar_logo_image_left"
+              flexItem
+            />{" "}
             <img className="toolbar_logo_image" src={RISHA} alt="risha_logo" />
           </div>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -59,14 +70,31 @@ function Toolbar(props) {
                   {t("Write")}
                 </a>
               </li>
+              {isAuthenticated ? (
+                <li>
+                  <Link to="/dashboard">{t("Dashboard")}</Link>
+                </li>
+              ) : (
+                <li onClick={() => loginWithRedirect()}>
+                  <Link to="#">{t("Login")}</Link>
+                </li>
+              )}
               <li>
                 <Language />
               </li>
               <li>
-                 <a href="https://www.iittp.ac.in/" rel="noreferrer" target="_blank">
-              <img className="toolbar_logo_image" src={IIT} alt="iitt_logo" />
-            </a>{" "}
-            <Divider orientation="vertical" flexItem />{" "}
+                <a
+                  href="https://www.iittp.ac.in/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <img
+                    className="toolbar_logo_image"
+                    src={IIT}
+                    alt="iitt_logo"
+                  />
+                </a>{" "}
+                <Divider orientation="vertical" flexItem />{" "}
               </li>
             </ul>
           </div>
