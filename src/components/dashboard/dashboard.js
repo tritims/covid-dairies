@@ -78,7 +78,7 @@ function Dash() {
                         <Link
                           style={{
                             textDecoration: "none",
-                            color: "#8A2BE2",
+                            color: "#fff",
                           }}
                           to={`/edit/${story._id}`}
                         >
@@ -89,7 +89,7 @@ function Dash() {
                       {"  "}
                       <span className="dashboardIcon">
                         <Link
-                          style={{ textDecoration: "none", color: "#8A2BE2" }}
+                          style={{ textDecoration: "none", color: "#fff" }}
                           to={`/story/${story._id}`}
                         >
                           {" "}
