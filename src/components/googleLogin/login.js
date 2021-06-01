@@ -5,6 +5,8 @@ import { GoogleLogin } from "react-google-login";
 import { useHistory } from "react-router-dom";
 import "./login.css";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
+
 
 const clientId =
   "497954184782-qkgk3kkmcljmeugcjt7r89i7voiam3rn.apps.googleusercontent.com";
@@ -15,6 +17,7 @@ function Login({ setAuth, setLoading }) {
   //     refreshTokenSetup(res);
   // };
   let history = useHistory();
+  const { t } = useTranslation() 
   const handleLogin = async (googleData) => {
     setLoading(true);
     const res = await axios.post(
@@ -32,8 +35,8 @@ function Login({ setAuth, setLoading }) {
       setAuth(true);
       localStorage.setItem("token", googleData.tokenId);
       Swal.fire(
-        "Logged In Successfully",
-        "Redirecting to Dashboard",
+        t("Logged In Successfully"),
+        t("Redirecting to Dashboard"),
         "success"
       );
 

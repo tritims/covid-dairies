@@ -82,5 +82,10 @@
   "Link copied successfully":"लिंक को सफलतापूर्वक कॉपी कर लिया गया है",
   "Failed": "विफल",
   "Unable to add. Try again later": "जोड़ने में असमर्थ। बाद में पुन: प्रयास करें",
-  "Unable to update. Try again later": "अपडेट करने में असमर्थ। बाद में पुन: प्रयास करें"
+  "Unable to update. Try again later": "अपडेट करने में असमर्थ। बाद में पुन: प्रयास करें",
+  "Dashboard": "डैशबोर्ड",
+  "Your Stories": "आपकी कहानियाँ",
+  "Created": "रचना तिथि",
+  "Logged In Successfully": "सफलतापूर्वक लॉग इन हो चुका है",
+  "Redirecting to Dashboard":"डैशबोर्ड पर पुनर्निर्देशित किया जाएगा"
 }

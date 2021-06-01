@@ -8,12 +8,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { constants } from '../../constants'
+import { useTranslation } from "react-i18next";
+
 
 function Dash() {
   const [stories, setStories] = useState();
   // const [mount, setMount] = useState(true);
   const { logout, user, getAccessTokenSilently } = useAuth0();
   const { name, picture } = user;
+  const { t } = useTranslation()
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -46,7 +49,7 @@ function Dash() {
         <header className="header-wrapper">
           <h2>
             <label htmlFor="nav-toggle"></label>
-            Dashboard
+            {t("Dashboard")}
           </h2>
 
           <div className="user-wrapper">
@@ -65,14 +68,14 @@ function Dash() {
         </header>
 
         <main>
-          <h1>Your Stories</h1>
+          <h1>{t("Your Stories")}</h1>
           <div className="cards">
             {stories ? (
               stories.map((story, i) => (
                 <div className="card-single" key={story.title + i}>
                   <div>
                     <h3>{story.title && story.title}</h3>
-                    <h4>Created : {story.dateTime && story.dateTime}</h4>
+                    <h4>{t("Created")} : {story.dateTime && story.dateTime}</h4>
                     <div className="dashboardIconContainer">
                       <span className="dashboardIcon">
                         <Link

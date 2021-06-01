@@ -81,5 +81,10 @@
   "Link copied successfully":"Link copied successfully",
   "Failed": "Failed",
   "Unable to add. Try again later": "Unable to add. Try again later",
-  "Unable to update. Try again later": "Unable to update. Try again later"
+  "Unable to update. Try again later": "Unable to update. Try again later",
+  "Dashboard": "Dashboard",
+  "Your Stories": "Your Stories",
+  "Created": "Created",
+  "Logged In Successfully": "Logged In Successfully",
+  "Redirecting to Dashboard":"Redirecting to Dashboard"
 }

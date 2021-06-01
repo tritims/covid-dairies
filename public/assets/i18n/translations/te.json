@@ -82,5 +82,10 @@
   "Link copied successfully":"లింక్ విజయవంతంగా కాపీ చేయబడింది",
   "Failed": "విఫలమైంది",
   "Unable to add. Try again later": "జోడించడం సాధ్యం కాలేదు. తరువాత మళ్ళీ ప్రయత్నించండి",
-  "Unable to update. Try again later": "నవీకరించడం సాధ్యం కాలేదు. అప్పుడు మళ్ళీ ప్రయత్నించండి"
+  "Unable to update. Try again later": "నవీకరించడం సాధ్యం కాలేదు. అప్పుడు మళ్ళీ ప్రయత్నించండి",
+  "Dashboard": "డాష్బోర్డ్",
+  "Your Stories": "మీ కథలు",
+  "Created": "సృష్టించబడింది",
+  "Logged In Successfully": "విజయవంతంగా లాగిన్ అయ్యారు",
+  "Redirecting to Dashboard":"డాష్‌బోర్డ్‌కు మళ్ళించబడుతుంది"
 }
