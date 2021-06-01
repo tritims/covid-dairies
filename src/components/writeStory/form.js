@@ -15,6 +15,7 @@ import { Redirect } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { constants } from '../../constants';
+import { CircularProgress } from "@material-ui/core";
 
 
 var fields = {
@@ -174,6 +175,7 @@ export default function Form(props) {
   const [token, setToken] = React.useState("");
   const [mode, setMode] = React.useState("write")
   let { id } = useParams();
+  let [isLoading, setIsLoading] = React.useState(false)
 
   useEffect(() => {
     const fetch = async () => {
@@ -319,6 +321,7 @@ export default function Form(props) {
   }
 
   const PUTFormData = (data) => {
+    setIsLoading(true)
     axios.put(
       `${constants().serverBaseUrl}/private/editStory/id=${id}`,
       data,
@@ -329,12 +332,14 @@ export default function Form(props) {
         },
       }
     ).then((res) => {
+      setIsLoading(false)
       const result = res.data;
       console.log(result)
       Swal.fire(t("Updated Successfully"), "", "success").then(() => {
         history.push('/dashboard')
       });
     }, (error) => {
+      setIsLoading(false)
       console.log(error);
       Swal.fire(t("Failed"), t("Unable to update. Try again later"), "error")
     }
@@ -342,6 +347,7 @@ export default function Form(props) {
   }
 
   const POSTFormData = (data) => {
+    setIsLoading(true)
     axios.post(
       `${constants().serverBaseUrl}/private/addStory`,
       data,
@@ -352,12 +358,14 @@ export default function Form(props) {
         },
       }
     ).then((res) => {
+      setIsLoading(false)
       const result = res.data;
       console.log(result)
       Swal.fire(t("Added Successfully"), "", "success").then(() => {
         history.push('/dashboard')
       });
     }, (error) => {
+      setIsLoading(false)
       console.log(error);
       Swal.fire(t("Failed"), t("Unable to add. Try again later"), "error")
     }
@@ -685,6 +693,7 @@ export default function Form(props) {
       <Grid item xs={12} style={{ marginBottom: "25px" }}>
         <React.Fragment>
           <div className={classes.buttons}>
+          {!isLoading ? (
             <Button
               variant="contained"
               color="primary"
@@ -694,6 +703,9 @@ export default function Form(props) {
             >
               {t("Submit")}
             </Button>
+          ):(
+            <CircularProgress color="secondary" size={20} />
+          )}
           </div>
         </React.Fragment>
       </Grid>
