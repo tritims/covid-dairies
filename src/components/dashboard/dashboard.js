@@ -3,6 +3,7 @@ import "./dash.css";
 // import Login from "../googleLogin/login";
 // import Logout from "../googleLogin/logout";
 import Spinner from "../loading/loading";
+import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -61,22 +62,12 @@ function Dash() {
               <h4>{name && name}</h4>
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() =>
-                logout({ returnTo: window.location.origin + "/covidsafar" })
-              }
-            >
-              Logout
-            </span>
-          </div>
         </header>
 
         <main>
           <h1>Your Stories</h1>
           <div className="cards">
-            {stories &&
+            {stories ? (
               stories.map((story, i) => (
                 <div className="card-single" key={story.title + i}>
                   <div>
@@ -87,7 +78,7 @@ function Dash() {
                         <Link
                           style={{
                             textDecoration: "none",
-                            color: "green",
+                            color: "#8A2BE2",
                           }}
                           to={`/edit/${story._id}`}
                         >
@@ -98,7 +89,7 @@ function Dash() {
                       {"  "}
                       <span className="dashboardIcon">
                         <Link
-                          style={{ textDecoration: "none", color: "green" }}
+                          style={{ textDecoration: "none", color: "#8A2BE2" }}
                           to={`/story/${story._id}`}
                         >
                           {" "}
@@ -108,7 +99,19 @@ function Dash() {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <div
+                style={{
+                  position: "absolute",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                <CircularProgress />
+              </div>
+            )}
           </div>
         </main>
       </div>

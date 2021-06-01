@@ -14,8 +14,7 @@ header {
   background: #fff;
   display: flex;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  transition: left 300ms;
+  padding: 0rem 1.5rem;
 }
 
 header h2 {
