@@ -6,6 +6,7 @@ import Spinner from "../loading/loading";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { constants } from '../../constants'
 
 function Dash() {
   const [stories, setStories] = useState();
@@ -18,7 +19,8 @@ function Dash() {
       try {
         let token = await getAccessTokenSilently();
         const res = await axios.get(
-          "http://localhost:5000/api/v1/private/dashboard",
+          // "http://localhost:5000/api/v1/private/dashboard",
+          `${constants().serverBaseUrl}/private/dashboard`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -13,8 +13,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { Redirect } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
-import { constants } from "../../constants";
 import { useParams } from "react-router-dom";
+import { constants } from '../../constants';
 
 
 var fields = {
@@ -319,7 +319,7 @@ export default function Form(props) {
 
   const PUTFormData = (data) => {
     axios.put(
-      `http://localhost:5000/api/v1/private/editStory/id=${id}`,
+      `${constants().serverBaseUrl}/private/editStory/id=${id}`,
       data,
       {
         headers: {
@@ -342,7 +342,7 @@ export default function Form(props) {
 
   const POSTFormData = (data) => {
     axios.post(
-      "http://localhost:5000/api/v1/private/addStory",
+      `${constants().serverBaseUrl}/private/addStory`,
       data,
       {
         headers: {
