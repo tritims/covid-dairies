@@ -34,13 +34,9 @@ function SideDrawer(props) {
             </Link>
           </li>
           <li>
-            <a
-              href="https://forms.gle/TuHpKdWhU5oqmZHk6"
-              target="_blank"
-              rel="noreferrer"
-            >
+          <Link to="/write">
               {t("Write")}
-            </a>
+            </Link>
           </li>
           <li>
             <Language />
