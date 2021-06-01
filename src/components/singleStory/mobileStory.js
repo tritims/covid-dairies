@@ -10,6 +10,7 @@ import { Button, Chip } from "@material-ui/core";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
+import { constants } from "../../constants"
 
 var colorArray = [
   "#FF6633",
@@ -69,7 +70,7 @@ function MobileStory({ width }) {
   useEffect(() => {
     const fetchStory = async () => {
       const res = await axios.get(
-        `https://covidsafarv1.herokuapp.com/api/v1/id=${id}`
+        `${constants().serverBaseUrl}/id=${id}`
       );
       setStory(res.data);
       setImage(getImage(res.data.keywords, res.data.content.length));
@@ -89,7 +90,7 @@ function MobileStory({ width }) {
             navigator.clipboard.writeText(
               `${window.location.origin}/story/${id}`
             );
-            Swal.fire("Link copied succesfully", "", "success");
+            Swal.fire("Link copied successfully", "", "success");
           }}
           variant="contained"
           color="secondary"

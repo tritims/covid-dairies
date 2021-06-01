@@ -74,5 +74,12 @@
   "smell": "smell",
   "infection": "infection",
   "paracetamol": "paracetamol",
-  "body ache": "body ache"
+  "body ache": "body ache",
+  "Logged Out Successfully": "Logged Out Successfully",
+  "Redirecting to homepage": "Redirecting to homepage",
+  "success": "success",
+  "Link copied successfully":"Link copied successfully",
+  "Failed": "Failed",
+  "Unable to add. Try again later": "Unable to add. Try again later",
+  "Unable to update. Try again later": "Unable to update. Try again later"
 }

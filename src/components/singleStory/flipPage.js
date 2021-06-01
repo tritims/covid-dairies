@@ -12,6 +12,7 @@ import moment from "moment";
 import { useTranslation } from "react-i18next";
 import Loading from "../stories/storyv2/loading2.jpg";
 import { ProgressiveImage } from "react-progressive-image-loading";
+import { constants } from "../../constants";
 
 const colorArray = [
   "#FF6633",
@@ -109,7 +110,8 @@ const Book = (props) => {
     const fetchStory = async () => {
       try {
         const res = await axios.get(
-          `https://covidsafarv1.herokuapp.com/api/v1/id=${id}`
+          // `https://covidsafarv1.herokuapp.com/api/v1/id=${id}`
+          `${constants().serverBaseUrl}/id=${id}`
         );
 
         setStory(res.data);
@@ -137,7 +139,7 @@ const Book = (props) => {
                 navigator.clipboard.writeText(
                   `${window.location.origin}/story/${id}`
                 );
-                Swal.fire("Link copied succesfully", "", "success");
+                Swal.fire(t("Link copied successfully"), "", "success");
               }}
               variant="contained"
               color="secondary"

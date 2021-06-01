@@ -75,5 +75,12 @@
   "smell": "వాసన",
   "infection": "సంక్రమణ",
   "paracetamol": "పారాసెటమాల్",
-  "body ache": "శరీర నొప్పి"
+  "body ache": "శరీర నొప్పి",
+  "Logged Out Successfully": "విజయవంతంగా లాగ్ అవుట్ అయ్యింది",
+  "Redirecting to homepage": "హోమ్‌పేజీకి మళ్ళించబడుతుంది",
+  "success": "విజయం",
+  "Link copied successfully":"లింక్ విజయవంతంగా కాపీ చేయబడింది",
+  "Failed": "విఫలమైంది",
+  "Unable to add. Try again later": "జోడించడం సాధ్యం కాలేదు. తరువాత మళ్ళీ ప్రయత్నించండి",
+  "Unable to update. Try again later": "నవీకరించడం సాధ్యం కాలేదు. అప్పుడు మళ్ళీ ప్రయత్నించండి"
 }

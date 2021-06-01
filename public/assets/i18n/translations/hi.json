@@ -75,5 +75,12 @@
   "smell": "गंध",
   "infection": "संक्रमण",
   "paracetamol": "पैरासिटामोल",
-  "body ache": "शरीर में दर्द"
+  "body ache": "शरीर में दर्द",
+  "Logged Out Successfully": "सफलतापूर्वक लॉग आउट किया गया",
+  "Redirecting to homepage": "होमपेज पर रीडायरेक्ट किया जाएगा",
+  "success": "सफल",
+  "Link copied successfully":"लिंक को सफलतापूर्वक कॉपी कर लिया गया है",
+  "Failed": "विफल",
+  "Unable to add. Try again later": "जोड़ने में असमर्थ। बाद में पुन: प्रयास करें",
+  "Unable to update. Try again later": "अपडेट करने में असमर्थ। बाद में पुन: प्रयास करें"
 }

@@ -12,7 +12,7 @@ function Logout({ setAuth, setLoading }) {
     localStorage.removeItem("token");
     setAuth(false);
     setLoading(true);
-    Swal.fire("Logged Out Successfully", "Redirecting to homepage", "success");
+    Swal.fire(t("Logged Out Successfully"), t("Redirecting to homepage"), "success");
     setTimeout(() => {
       history.push("/");
     }, 2000);
