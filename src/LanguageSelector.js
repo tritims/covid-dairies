@@ -13,7 +13,7 @@ const LanguageSelector = (props) => {
   const usePathname = () => {
     const location = useLocation();
     let pname = location.pathname;
-    return pname.includes("story");
+    return pname.includes("story") || pname.includes("edit");
   };
 
   return (

@@ -202,6 +202,7 @@ export default function Form(props) {
           setQuestion2(res.data.thingToForget)
           setDuration(res.data.duration)
           i18n.changeLanguage(res.data.language)
+          localStorage.setItem("lang", res.data.language)
           // setSymptoms(res.data.symptoms.join(','))
           // Do keyword stuff
           let keys = Object.keys(kwBase);
