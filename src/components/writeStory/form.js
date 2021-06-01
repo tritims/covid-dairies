@@ -8,7 +8,13 @@ import Button from "@material-ui/core/Button";
 import './form.css'
 import { useTranslation } from "react-i18next";
 import Chip from '@material-ui/core/Chip';
-
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
+import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import { constants } from "../../constants";
+import { useParams } from "react-router-dom";
 
 
 var fields = {
@@ -145,9 +151,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Form() {
+export default function Form(props) {
   const classes = useStyles();
   const { t } = useTranslation();
+  const { i18n } = useTranslation()
+  const history = useHistory();
+  const { getAccessTokenSilently } = useAuth0();
   // const [keywords, setKeywords] = useState([])
   const [name, setName] = React.useState("");
   const [gender, setGender] = React.useState("");
@@ -162,7 +171,69 @@ export default function Form() {
   const [question1, setQuestion1] = React.useState("");
   const [question2, setQuestion2] = React.useState("");
   const [keywords, setKeywords] = React.useState(kwBase);
-  
+  const [token, setToken] = React.useState("");
+  const [mode, setMode] = React.useState("write")
+  let { id } = useParams();
+
+  useEffect(() => {
+    const fetch = async () => {
+      setToken(await getAccessTokenSilently());
+      // console.log(token);
+    };
+    fetch();
+    let uri = props.location.pathname
+    if(uri.includes('edit')){
+      setMode("edit");
+      // setStoryId(uri.split("/")[uri.split("/").length-1])
+      axios.get(
+        `${constants().serverBaseUrl}/id=${id}`
+      ).then((res) => {
+        if(res.data){
+          setAge(res.data.age)
+          setName(res.data.name)
+          setCity(res.data.cities[0]) //Stored as array in backend
+          setGender(res.data.gender)
+          setExperienceType(res.data.experienceType)
+          setIsCured(res.data.isCured)
+          setSymptoms(res.data.symptoms)
+          setTitle(res.data.title)
+          setContent(res.data.content.join(" "))
+          setQuestion1(res.data.thingToRemember)
+          setQuestion2(res.data.thingToForget)
+          setDuration(res.data.duration)
+          i18n.changeLanguage(res.data.language)
+          // setSymptoms(res.data.symptoms.join(','))
+          // Do keyword stuff
+          let keys = Object.keys(kwBase);
+          let kws = res.data.keywords;
+          for(let i=0; i<keys.length; i++){
+            if(kws.includes(t(keys[i]))){
+              kwBase[keys[i]] = true // Highlight all keywords
+            }
+          }
+          setKeywords(kwBase)
+
+          // Set Form data values 
+          fields.name = res.data.name;
+          fields.age = res.data.age;
+          fields.question1 = res.data.thingToRemember;
+          fields.question2 = res.data.thingToForget;
+          fields.duration = res.data.duration;
+          fields.symptoms = res.data.symptoms;
+          fields.title = res.data.title;
+          fields.experienceType = res.data.experienceType;
+          fields.isCured = res.data.isCured;
+          fields.city = res.data.cities[0]
+          fields.gender = res.data.gender;
+          fields.content = res.data.content.join(' ');
+        }
+        
+        console.log(res.data)
+      }, (err) => {
+        console.log(err)
+      });
+    }
+  }, []);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -226,14 +297,71 @@ export default function Form() {
     fields.question2 = event.target.value;
   };
 
+  const getChipStyle = (kw) => {
+    if (keywords[kw]) {
+      return {
+        background: "#280937 !important",
+        color: "#ffff !important"
+      }
+    } else {
+      return {}
+    }
+  }
+
   const chipClicked = (event) => {
     setKeywords({
-      event: !kwBase[event]
+      event : !kwBase[event]
     })
     kwBase[event] = !kwBase[event]
+    
     // console.log(kwBase)
   }
 
+  const PUTFormData = (data) => {
+    axios.put(
+      `http://localhost:5000/api/v1/private/editStory/id=${id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then((res) => {
+      const result = res.data;
+      console.log(result)
+      Swal.fire(t("Updated Successfully"), "", "success").then(() => {
+        history.push('/dashboard')
+      });
+    }, (error) => {
+      console.log(error);
+      Swal.fire(t("Failed"), t("Unable to update. Try again later"), "error")
+    }
+    );
+  }
+
+  const POSTFormData = (data) => {
+    axios.post(
+      "http://localhost:5000/api/v1/private/addStory",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then((res) => {
+      const result = res.data;
+      console.log(result)
+      Swal.fire(t("Added Successfully"), "", "success").then(() => {
+        history.push('/dashboard')
+      });
+    }, (error) => {
+      console.log(error);
+      Swal.fire(t("Failed"), t("Unable to add. Try again later"), "error")
+    }
+    );
+  }
   const onSubmitHandler = () => {
     if (
       fields.age !== "" &&
@@ -242,7 +370,36 @@ export default function Form() {
       fields.title !== "" &&
       fields.content !== ""
     ) {
-      console.log(fields);
+      let k = []
+      let keys = Object.keys(kwBase)
+      for (let i = 0; i < keys.length; i++) {
+        if (kwBase[keys[i]]) {
+          k.push(t(keys[i]))
+        }
+      }
+      let reqBody = {
+        name: fields.name,
+        age: fields.age,
+        city: fields.city,
+        gender: fields.gender,
+        experienceType: fields.experienceType,
+        symptoms: fields.symptoms,
+        duration: fields.duration,
+        isCured: fields.isCured,
+        title: fields.title,
+        content: fields.content,
+        thingToRemember: fields.question1,
+        thingToForget: fields.question2,
+        keywords: k,
+        language: localStorage.getItem("lang") || "en"
+      }
+      console.log(reqBody)
+      if(mode == 'edit'){
+        PUTFormData(reqBody)
+      } else {
+        POSTFormData(reqBody)
+      }
+      
     } else {
       alert(t("FillAllMandatory"));
     }
@@ -444,7 +601,7 @@ export default function Form() {
                 required
                 id="content"
                 name="content"
-                placeholder={t("Write your story here")}
+                placeholder={t("Write your story here")+ '*'}
                 multiline
                 value={content}
                 onChange={handleContentChange}
@@ -498,22 +655,23 @@ export default function Form() {
       </Grid>
       <Grid xs={12}>
         <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
-            {t("Select Keywords associated with your story")}:
+          {t("Select Keywords associated with your story")}:
         </Typography>
         <React.Fragment>
-          <ul style={{padding: "0px"}}>
+          <ul style={{ padding: "0px" }}>
             {
               Object.keys(kwBase).map(
                 kw => {
                   return (
-                    <li style={{display:"inline", margin: "2px"}}>
+                    <li style={{ display: "inline", margin: "2px" }}>
                       <Chip
-                      label={t(kw)}
-                      onClick={() => chipClicked(kw)}
-                      className={{
-                        "active": kwBase[kw],
-                        "chip": true
-                      }}
+                        label={t(kw)}
+                        onClick={() => chipClicked(kw)}
+                        className={{
+                          'active': kwBase[kw],
+                          'chip': true
+                        }}
+                        // style={getChipStyle(kw)}
                       />
                     </li>
                   )

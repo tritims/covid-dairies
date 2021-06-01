@@ -13,6 +13,7 @@ import AuthWithHistory from "./components/authProvider/authProviderWithHistory";
 import { env } from "./environment";
 import Login from "./components/auth0/login";
 import Dashboard from "./components/dashboard/dashboard";
+import WriteStory from "./components/writeStory/form"
 import ProtectedRoute from "./components/authProvider/protectedRoute";
 
 function App() {
@@ -78,6 +79,9 @@ function App() {
         <Route exact path="/dashboard">
           <Redirect to={base_url + "/dashboard"} />
         </Route>
+        <Route exact path="/write">
+          <Redirect to={base_url + "/write"} />
+        </Route>
         <Route
           exact
           path="/story/:id"
@@ -85,6 +89,17 @@ function App() {
             return (
               <Redirect
                 to={"/covidsafar" + "/story/" + props.match.params.id}
+              />
+            );
+          }}
+        ></Route>
+        <Route
+          exact
+          path="/edit/:id"
+          render={(props) => {
+            return (
+              <Redirect
+                to={"/covidsafar" + "/edit/" + props.match.params.id}
               />
             );
           }}
@@ -103,6 +118,16 @@ function App() {
             path={base_url + "/dashboard"}
             component={Dashboard}
           />
+          <ProtectedRoute
+            exact
+            path={base_url + "/write"}
+            component={WriteStory}
+          />
+          <ProtectedRoute
+            exact
+            path={base_url + "/edit/:id"}
+            component={WriteStory}
+          />{""}
         </div>
       </AuthWithHistory>
     </Router>

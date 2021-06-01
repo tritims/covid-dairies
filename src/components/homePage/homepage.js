@@ -297,11 +297,11 @@ const Wavy = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    const fetch = async () => {
-      let token = await getAccessTokenSilently();
-      console.log(token);
-    };
-    fetch();
+    // const fetch = async () => {
+    //   let token = await getAccessTokenSilently();
+    //   console.log(token);
+    // };
+    // fetch();
   }, []);
 
   return (
