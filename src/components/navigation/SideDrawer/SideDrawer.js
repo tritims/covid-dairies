@@ -38,7 +38,7 @@ function SideDrawer(props) {
             </Link>
           </li>
           <li>
-          <Link to="/write">
+          <Link onClick={() => props.click(false)} to="/write">
               {t("Write")}
             </Link>
           </li>
@@ -47,7 +47,7 @@ function SideDrawer(props) {
               <>
                 {" "}
                 <li>
-                  <Link to="/dashboard">{t("Dashboard")}</Link>
+                  <Link onClick={() => props.click(false)} to="/dashboard">{t("Dashboard")}</Link>
                 </li>{" "}
                 <li
                   onClick={() =>
