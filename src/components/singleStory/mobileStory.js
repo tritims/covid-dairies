@@ -10,7 +10,7 @@ import { Button, Chip } from "@material-ui/core";
 import Swal from "sweetalert2";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
-import { constants } from "../../constants"
+import { constants } from "../../constants";
 
 var colorArray = [
   "#FF6633",
@@ -69,9 +69,7 @@ function MobileStory({ width }) {
 
   useEffect(() => {
     const fetchStory = async () => {
-      const res = await axios.get(
-        `${constants().serverBaseUrl}/id=${id}`
-      );
+      const res = await axios.get(`${constants().serverBaseUrl}/id=${id}`);
       setStory(res.data);
       setImage(getImage(res.data.keywords, res.data.content.length));
     };
@@ -114,17 +112,15 @@ function MobileStory({ width }) {
               <div className="wavy-h2">
                 <span className="pageCoverTitle">{story && story.title}</span>{" "}
                 <div>
-                  {story.author ? (
+                  {story.source ? (
                     <>
-                      <i>{t("By")} </i> <div>{story.author}</div>
+                      <strong>{t("Source")}:</strong> {story.source}
                     </>
-                  ) : (
-                    story.source && (
-                      <>
-                        <i>{t("Source")}:</i> {story.source}
-                      </>
-                    )
-                  )}
+                  ) : story.name && story.name.length > 0 ? (
+                    <>
+                      <i>{t("By")} </i> <div className="coverauthor">{story.name}</div>
+                    </>
+                  ) : null}
                 </div>
                 <span>
                   {t("Date")} : {moment(story.dateTime).format("D MMMM YYYY")}

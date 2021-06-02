@@ -9,7 +9,7 @@ import SearchBar from "../searchbar/searchbar";
 import Spinner from "../loading/loading";
 import { getImage } from "../singleStory/imageGetter";
 import { useTranslation } from "react-i18next";
-import { constants } from "../../constants"
+import { constants } from "../../constants";
 
 const Stories = ({
   page,
@@ -45,7 +45,9 @@ const Stories = ({
       try {
         const data = await axios.get(
           // `https://covidsafarv1.herokuapp.com/api/v1/?language=${lang}&date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
-          `${constants().serverBaseUrl}?language=${lang}&date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
+          `${
+            constants().serverBaseUrl
+          }?language=${lang}&date=${sortingDate}&page=${page}&coverage=${coverage}&search=${searchString}`,
           {
             headers: {
               "Access-Control-Allow-Origin": "*",
@@ -99,7 +101,8 @@ const Stories = ({
               }}
             >
               {(page - 1) * 9 + 1} -{" "}
-              {page * 9 < storyCount ? page * 9 : storyCount} / {storyCount} {" "}  {t('Stories')}
+              {page * 9 < storyCount ? page * 9 : storyCount} / {storyCount}{" "}
+              {t("Stories")}
             </span>
             <div
               style={{
