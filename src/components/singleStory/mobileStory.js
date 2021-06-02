@@ -11,6 +11,10 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import { useTranslation } from "react-i18next";
 import { constants } from "../../constants";
+import { env } from "../../environment";
+
+const base_url = env().mode === "prod" ? "/covidsafar" : "";
+
 
 var colorArray = [
   "#FF6633",
@@ -86,7 +90,7 @@ function MobileStory({ width }) {
         <Button
           onClick={() => {
             navigator.clipboard.writeText(
-              `${window.location.origin}/story/${id}`
+              `${window.location.origin}${base_url}/story/${id}`
             );
             Swal.fire("Link copied successfully", "", "success");
           }}

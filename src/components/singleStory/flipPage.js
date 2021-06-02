@@ -13,7 +13,9 @@ import { useTranslation } from "react-i18next";
 import Loading from "../stories/storyv2/loading2.jpg";
 import { ProgressiveImage } from "react-progressive-image-loading";
 import { constants } from "../../constants";
+import { env } from "../../environment";
 
+const base_url = env().mode === "prod" ? "/covidsafar" : "";
 const colorArray = [
   "#FF6633",
   "#FF33FF",
@@ -137,7 +139,7 @@ const Book = (props) => {
             <Button
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `${window.location.origin}/story/${id}`
+                  `${window.location.origin}${base_url}/story/${id}`
                 );
                 Swal.fire(t("Link copied successfully"), "", "success");
               }}
