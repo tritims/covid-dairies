@@ -88,5 +88,9 @@
   "Created": "रचना तिथि",
   "Logged In Successfully": "सफलतापूर्वक लॉग इन हो चुका है",
   "Redirecting to Dashboard":"डैशबोर्ड पर पुनर्निर्देशित किया जाएगा",
-  "Login": "लॉगइन"
+  "Login": "लॉगइन",
+  "Added Successfully":"सफलतापूर्वक जोड़ा गया",
+  "Updated Successfully": "अद्यतन सफल",
+  "By": "द्वारा",
+  "The End": "समाप्त"
 }

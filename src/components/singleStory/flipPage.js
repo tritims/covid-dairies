@@ -167,7 +167,7 @@ const Book = (props) => {
                       {" "}
                       {story.author ? (
                         <>
-                          <i>By </i>{" "}
+                          <i>{t("By")} </i>{" "}
                           <div className="coverauthor">{story.author}</div>
                         </>
                       ) : (
@@ -217,7 +217,7 @@ const Book = (props) => {
                     </Page>
                   ))}
                 <PageCover>
-                  <h2 className="wavy-h2">The End</h2>
+                  <h2 className="wavy-h2">{t("The End")}</h2>
                 </PageCover>
               </HTMLFlipBook>
             </div>

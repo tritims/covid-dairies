@@ -87,5 +87,9 @@
   "Created": "Created",
   "Logged In Successfully": "Logged In Successfully",
   "Redirecting to Dashboard":"Redirecting to Dashboard",
-  "Login": "Login"
+  "Login": "Login",
+  "Added Successfully":"Added Successfully",
+  "Updated Successfully": "Updated Successfully",
+  "By": "By",
+  "The End": "The End"
 }

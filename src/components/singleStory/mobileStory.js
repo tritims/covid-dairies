@@ -116,7 +116,7 @@ function MobileStory({ width }) {
                 <div>
                   {story.author ? (
                     <>
-                      <i>by </i> <div>{story.author}</div>
+                      <i>{t("By")} </i> <div>{story.author}</div>
                     </>
                   ) : (
                     story.source && (
@@ -169,7 +169,7 @@ function MobileStory({ width }) {
             </article>
           ))}
           <article className="mobilCover">
-            <h1>THE END</h1>
+            <h1>{t("The End")}</h1>
           </article>
         </FlipPage>
       ) : (
