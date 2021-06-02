@@ -115,7 +115,7 @@ const Book = (props) => {
         );
 
         setStory(res.data);
-        setImage(getImage(res.data.keywords, res.data.content.length));
+        setImage(getImage([res.data.keywords], res.data.content.length));
       } catch (error) {
         console.error(error);
       }
@@ -165,16 +165,16 @@ const Book = (props) => {
                     </span>{" "}
                     <div>
                       {" "}
-                      {story.author ? (
-                        <>
-                          <i>By </i>{" "}
-                          <div className="coverauthor">{story.author}</div>
-                        </>
-                      ) : (
+                      {story.source ? (
                         <>
                           <strong>{t("Source")}:</strong> {story.source}
                         </>
-                      )}
+                      ) : story.name && story.name.length > 0 ? (
+                        <>
+                          <i>By </i>{" "}
+                          <div className="coverauthor">{story.name}</div>
+                        </>
+                      ) : null}
                     </div>
                     {story.dateTime && (
                       <span>

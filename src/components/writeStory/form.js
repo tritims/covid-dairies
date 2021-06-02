@@ -5,18 +5,17 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import './form.css'
+import "./form.css";
 import { useTranslation } from "react-i18next";
-import Chip from '@material-ui/core/Chip';
+import Chip from "@material-ui/core/Chip";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { constants } from '../../constants';
+import { constants } from "../../constants";
 import { CircularProgress } from "@material-ui/core";
-
 
 var fields = {
   name: "",
@@ -32,22 +31,6 @@ var fields = {
   question1: "",
   question2: "",
 };
-
-// {
-//   name: "xxx",
-//   age: "25", 
-//   city: "xxxx",
-//   gender: "M",
-//   experienceType: "Covid Patient",
-//   symptoms: "cold, cough, fever",
-//   duration: "1 month",
-//   isCured: "Yes/No",
-//   title: "",
-//   content: "",
-//   thigToRemember: "xxx",
-//   thingToForget: "vvdfdf",
-//   keywords: ["sdfsdf", "dfsdfd"]
-// }
 
 const genders = [
   {
@@ -65,21 +48,20 @@ const genders = [
 ];
 
 var kwBase = {
-  "positive": false,
-  "hospital": false,
-  "fever": false,
-  "test": false,
-  "quarantine": false,
-  "isolation": false,
-  "vaccination": false,
-  "cough": false,
-  "recovery": false,
-  "smell": false,
-  "infection": false,
-  "paracetamol": false,
-  "body ache": false
+  positive: false,
+  hospital: false,
+  fever: false,
+  test: false,
+  quarantine: false,
+  isolation: false,
+  vaccination: false,
+  cough: false,
+  recovery: false,
+  smell: false,
+  infection: false,
+  paracetamol: false,
+  "body ache": false,
 };
-
 
 const experienceTypes = [
   {
@@ -155,7 +137,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Form(props) {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
   const history = useHistory();
   const { getAccessTokenSilently } = useAuth0();
   // const [keywords, setKeywords] = useState([])
@@ -173,9 +155,9 @@ export default function Form(props) {
   const [question2, setQuestion2] = React.useState("");
   const [keywords, setKeywords] = React.useState(kwBase);
   const [token, setToken] = React.useState("");
-  const [mode, setMode] = React.useState("write")
+  const [mode, setMode] = React.useState("write");
   let { id } = useParams();
-  let [isLoading, setIsLoading] = React.useState(false)
+  let [isLoading, setIsLoading] = React.useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -183,58 +165,87 @@ export default function Form(props) {
       // console.log(token);
     };
     fetch();
-    let uri = props.location.pathname
-    if(uri.includes('edit')){
+    let uri = props.location.pathname;
+    if (uri.includes("edit")) {
       setMode("edit");
       // setStoryId(uri.split("/")[uri.split("/").length-1])
-      axios.get(
-        `${constants().serverBaseUrl}/id=${id}`
-      ).then((res) => {
-        if(res.data){
-          setAge(res.data.age)
-          setName(res.data.name)
-          setCity(res.data.cities[0]) //Stored as array in backend
-          setGender(res.data.gender)
-          setExperienceType(res.data.experienceType)
-          setIsCured(res.data.isCured)
-          setSymptoms(res.data.symptoms)
-          setTitle(res.data.title)
-          setContent(res.data.content.join(" "))
-          setQuestion1(res.data.thingToRemember)
-          setQuestion2(res.data.thingToForget)
-          setDuration(res.data.duration)
-          i18n.changeLanguage(res.data.language)
-          localStorage.setItem("lang", res.data.language)
-          // setSymptoms(res.data.symptoms.join(','))
-          // Do keyword stuff
-          let keys = Object.keys(kwBase);
-          let kws = res.data.keywords;
-          for(let i=0; i<keys.length; i++){
-            if(kws.includes(t(keys[i]))){
-              kwBase[keys[i]] = true // Highlight all keywords
+      axios.get(`${constants().serverBaseUrl}/id=${id}?edit=1`).then(
+        (res) => {
+          if (res.data) {
+            setAge(res.data.age);
+            setName(res.data.name);
+            setCity(res.data.cities[0]); //Stored as array in backend
+            setGender(res.data.gender);
+            setExperienceType(res.data.experienceType);
+            setIsCured(res.data.isCured);
+            setSymptoms(res.data.symptoms);
+            setTitle(res.data.title);
+            setContent(res.data.content.join(" "));
+            setQuestion1(res.data.thingToRemember);
+            setQuestion2(res.data.thingToForget);
+            setDuration(res.data.duration);
+            i18n.changeLanguage(res.data.language);
+            localStorage.setItem("lang", res.data.language);
+            // setSymptoms(res.data.symptoms.join(','))
+            // Do keyword stuff
+            let keys = Object.keys(kwBase);
+            let kws = res.data.keywords;
+            for (let i = 0; i < keys.length; i++) {
+              if (kws.includes(t(keys[i]))) {
+                kwBase[keys[i]] = true; // Highlight all keywords
+              }
             }
-          }
-          setKeywords(kwBase)
+            setKeywords(kwBase);
 
-          // Set Form data values 
-          fields.name = res.data.name;
-          fields.age = res.data.age;
-          fields.question1 = res.data.thingToRemember;
-          fields.question2 = res.data.thingToForget;
-          fields.duration = res.data.duration;
-          fields.symptoms = res.data.symptoms;
-          fields.title = res.data.title;
-          fields.experienceType = res.data.experienceType;
-          fields.isCured = res.data.isCured;
-          fields.city = res.data.cities[0]
-          fields.gender = res.data.gender;
-          fields.content = res.data.content.join(' ');
+            // Set Form data values
+            fields.name = res.data.name;
+            fields.age = res.data.age;
+            fields.question1 = res.data.thingToRemember;
+            fields.question2 = res.data.thingToForget;
+            fields.duration = res.data.duration;
+            fields.symptoms = res.data.symptoms;
+            fields.title = res.data.title;
+            fields.experienceType = res.data.experienceType;
+            fields.isCured = res.data.isCured;
+            fields.city = res.data.cities[0];
+            fields.gender = res.data.gender;
+            fields.content = res.data.content.join(" ");
+          }
+        },
+        (err) => {
+          console.log(err);
         }
-        
-        console.log(res.data)
-      }, (err) => {
-        console.log(err)
-      });
+      );
+    } else {
+      fields = {
+        name: "",
+        age: "",
+        city: "",
+        gender: "",
+        experienceType: "Covid patient",
+        symptoms: "",
+        duration: "",
+        isCured: "Yes",
+        title: "",
+        content: "",
+        question1: "",
+        question2: "",
+      };
+      kwBase = {
+        positive: false,
+        hospital: false,
+        fever: false,
+        test: false,
+        quarantine: false,
+        isolation: false,
+        vaccination: false,
+        cough: false,
+        recovery: false,
+        smell: false,
+        infection: false,
+        paracetamol: false,
+        "body ache": false,
+      };
     }
   }, []);
 
@@ -304,73 +315,77 @@ export default function Form(props) {
     if (keywords[kw]) {
       return {
         background: "#280937 !important",
-        color: "#ffff !important"
-      }
+        color: "#ffff !important",
+      };
     } else {
-      return {}
+      return {};
     }
-  }
+  };
 
   const chipClicked = (event) => {
     setKeywords({
-      event : !kwBase[event]
-    })
-    kwBase[event] = !kwBase[event]
-    
+      event: !kwBase[event],
+    });
+    kwBase[event] = !kwBase[event];
+
     // console.log(kwBase)
-  }
+  };
 
   const PUTFormData = (data) => {
-    setIsLoading(true)
-    axios.put(
-      `${constants().serverBaseUrl}/private/editStory/id=${id}`,
-      data,
-      {
+    setIsLoading(true);
+    axios
+      .put(`${constants().serverBaseUrl}/private/editStory/id=${id}`, data, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
-    ).then((res) => {
-      setIsLoading(false)
-      const result = res.data;
-      console.log(result)
-      Swal.fire(t("Updated Successfully"), "", "success").then(() => {
-        history.push('/dashboard')
-      });
-    }, (error) => {
-      setIsLoading(false)
-      console.log(error);
-      Swal.fire(t("Failed"), t("Unable to update. Try again later"), "error")
-    }
-    );
-  }
+      })
+      .then(
+        (res) => {
+          setIsLoading(false);
+          const result = res.data;
+          console.log(result);
+          Swal.fire(t("Updated Successfully"), "", "success").then(() => {
+            history.push("/dashboard");
+          });
+        },
+        (error) => {
+          setIsLoading(false);
+          console.log(error);
+          Swal.fire(
+            t("Failed"),
+            t("Unable to update. Try again later"),
+            "error"
+          );
+        }
+      );
+  };
 
   const POSTFormData = (data) => {
-    setIsLoading(true)
-    axios.post(
-      `${constants().serverBaseUrl}/private/addStory`,
-      data,
-      {
+    setIsLoading(true);
+    axios
+      .post(`${constants().serverBaseUrl}/private/addStory`, data, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
-    ).then((res) => {
-      setIsLoading(false)
-      const result = res.data;
-      console.log(result)
-      Swal.fire(t("Added Successfully"), "", "success").then(() => {
-        history.push('/dashboard')
-      });
-    }, (error) => {
-      setIsLoading(false)
-      console.log(error);
-      Swal.fire(t("Failed"), t("Unable to add. Try again later"), "error")
-    }
-    );
-  }
+      })
+      .then(
+        (res) => {
+          setIsLoading(false);
+          const result = res.data;
+          // console.log(result);
+          Swal.fire(t("Added Successfully"), "", "success").then(() => {
+            history.push("/dashboard");
+          });
+        },
+        (error) => {
+          setIsLoading(false);
+          console.log(error);
+          Swal.fire(t("Failed"), t("Unable to add. Try again later"), "error");
+        }
+      );
+  };
   const onSubmitHandler = () => {
     if (
       fields.age !== "" &&
@@ -379,11 +394,11 @@ export default function Form(props) {
       fields.title !== "" &&
       fields.content !== ""
     ) {
-      let k = []
-      let keys = Object.keys(kwBase)
+      let k = [];
+      let keys = Object.keys(kwBase);
       for (let i = 0; i < keys.length; i++) {
         if (kwBase[keys[i]]) {
-          k.push(t(keys[i]))
+          k.push(t(keys[i]));
         }
       }
       let reqBody = {
@@ -400,15 +415,14 @@ export default function Form(props) {
         thingToRemember: fields.question1,
         thingToForget: fields.question2,
         keywords: k,
-        language: localStorage.getItem("lang") || "en"
-      }
-      console.log(reqBody)
-      if(mode == 'edit'){
-        PUTFormData(reqBody)
+        language: localStorage.getItem("lang") || "en",
+      };
+      // console.log(reqBody);
+      if (mode === "edit") {
+        PUTFormData(reqBody);
       } else {
-        POSTFormData(reqBody)
+        POSTFormData(reqBody);
       }
-      
     } else {
       alert(t("FillAllMandatory"));
     }
@@ -417,7 +431,7 @@ export default function Form(props) {
   };
 
   return (
-    <Grid container className="formContainer" xs={9} md={9} lg={9}>
+    <Grid container className="formContainer">
       <Grid item xs={12} className="formSection">
         <div>
           <p>
@@ -441,7 +455,11 @@ export default function Form(props) {
       </Grid>
       <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+          <Typography
+            variant="h6"
+            gutterBottom
+            className="theme-color sectionHeader"
+          >
             {t("Your Details")}
           </Typography>
           <Grid container spacing={3}>
@@ -510,7 +528,11 @@ export default function Form(props) {
       </Grid>
       <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+          <Typography
+            variant="h6"
+            gutterBottom
+            className="theme-color sectionHeader"
+          >
             {t("Type Of Experience")}
           </Typography>
           <Grid container spacing={3}>
@@ -534,7 +556,7 @@ export default function Form(props) {
             </Grid>
             <Grid item xs={12}>
               {experienceType === "Covid patient" ||
-                experienceType === "Family member/friend of Covid patient" ? (
+              experienceType === "Family member/friend of Covid patient" ? (
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <TextField
@@ -587,7 +609,11 @@ export default function Form(props) {
       </Grid>
       <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+          <Typography
+            variant="h6"
+            gutterBottom
+            className="theme-color sectionHeader"
+          >
             {t("Share your experience")}
           </Typography>
           <Grid container spacing={3}>
@@ -610,7 +636,7 @@ export default function Form(props) {
                 required
                 id="content"
                 name="content"
-                placeholder={t("Write your story here")+ '*'}
+                placeholder={t("Write your story here") + "*"}
                 multiline
                 value={content}
                 onChange={handleContentChange}
@@ -626,7 +652,11 @@ export default function Form(props) {
       </Grid>
       <Grid item xs={12} className="formSection">
         <React.Fragment>
-          <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+          <Typography
+            variant="h6"
+            gutterBottom
+            className="theme-color sectionHeader"
+          >
             {t("Something you'll always remember about this pandemic")}:
           </Typography>
           <Grid item xs={12}>
@@ -642,8 +672,13 @@ export default function Form(props) {
               color="secondary"
               fullWidth
             />
-          </Grid >
-          <Typography variant="h6" gutterBottom className="theme-color sectionHeader" style={{ marginTop: "50px" }}>
+          </Grid>
+          <Typography
+            variant="h6"
+            gutterBottom
+            className="theme-color sectionHeader"
+            style={{ marginTop: "50px" }}
+          >
             {t("Something you'll want to forget about this pandemic")}:
           </Typography>
           <Grid item xs={12}>
@@ -662,50 +697,51 @@ export default function Form(props) {
           </Grid>
         </React.Fragment>
       </Grid>
-      <Grid xs={12}>
-        <Typography variant="h6" gutterBottom className="theme-color sectionHeader">
+      <Grid item xs={12}>
+        <Typography
+          variant="h6"
+          gutterBottom
+          className="theme-color sectionHeader"
+        >
           {t("Select Keywords associated with your story")}:
         </Typography>
         <React.Fragment>
           <ul style={{ padding: "0px" }}>
-            {
-              Object.keys(kwBase).map(
-                kw => {
-                  return (
-                    <li style={{ display: "inline", margin: "2px" }}>
-                      <Chip
-                        label={t(kw)}
-                        onClick={() => chipClicked(kw)}
-                        className={{
-                          'active': kwBase[kw],
-                          'chip': true
-                        }}
-                        // style={getChipStyle(kw)}
-                      />
-                    </li>
-                  )
-                }
-              )
-            }
+            {Object.keys(kwBase).map((kw) => {
+              return (
+                <li key={kw} style={{ display: "inline", margin: "2px" }}>
+                  <Chip
+                    label={t(kw)}
+                    onClick={() => chipClicked(kw)}
+                    className={`chip ${kwBase[kw] ? "active" : null}`}
+                    // className={{
+                    //   active: kwBase[kw],
+                    //   chip: true,
+                    // }}
+                    // style={getChipStyle(kw)}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </React.Fragment>
       </Grid>
       <Grid item xs={12} style={{ marginBottom: "25px" }}>
         <React.Fragment>
           <div className={classes.buttons}>
-          {!isLoading ? (
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ background: "#280937" }}
-              className={classes.button}
-              onClick={onSubmitHandler}
-            >
-              {t("Submit")}
-            </Button>
-          ):(
-            <CircularProgress color="secondary" size={20} />
-          )}
+            {!isLoading ? (
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ background: "#280937" }}
+                className={classes.button}
+                onClick={onSubmitHandler}
+              >
+                {t("Submit")}
+              </Button>
+            ) : (
+              <CircularProgress color="secondary" size={20} />
+            )}
           </div>
         </React.Fragment>
       </Grid>
