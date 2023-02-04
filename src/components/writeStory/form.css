@@ -1,0 +1,36 @@
+.formContainer {
+  margin: auto;
+  width: 80% !important;
+}
+
+.theme-color {
+  background: #280937;
+}
+
+.sectionHeader {
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.formSection {
+  margin-bottom: 50px !important;
+}
+
+.active {
+  background: #280937 !important;
+  color: #ffff !important;
+}
+
+.chip {
+  margin: 4px 0px !important;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.MuiInputLabel-outlined {
+  z-index: 0 !important;
+}
